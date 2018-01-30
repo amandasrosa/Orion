@@ -2,7 +2,7 @@
 
 function get_users() {
     global $db;
-    $query = 'SELECT * FROM users ORDER BY user_id';
+    $query = 'SELECT * FROM user ORDER BY user_id';
     try {
         $statement = $db->prepare($query);
         $statement->execute();
@@ -18,7 +18,7 @@ function get_users() {
 function get_user($user_id) {
     global $db;
     $query = 'SELECT *
-              FROM users
+              FROM user
               WHERE user_id = :user_id';
     try {
         $statement = $db->prepare($query);
@@ -33,23 +33,24 @@ function get_user($user_id) {
     }
 }
 
-function add_user($category_id, $code, $name, $description,
-        $price, $discount_percent) {
+function add_user($flag_admin, $username, $password, $name,
+        $email, $phone, $address) {
     global $db;
-    $query = 'INSERT INTO users
-                 (category_id, userCode, userName, description,
-                  listPrice, discountPercent, dateAdded)
+    $query = 'INSERT INTO user
+                 (flag_admin, username, password, name,
+                  email, phone, address)
               VALUES
-                 (:category_id, :code, :name, :description, :price,
-                  :discount_percent, NOW())';
+                 (:flag_admin, :username, :password, :name, :email,
+                  :phone, :address)';
     try {
         $statement = $db->prepare($query);
-        $statement->bindValue(':category_id', $category_id);
-        $statement->bindValue(':code', $code);
+        $statement->bindValue(':flag_admin', $flag_admin);
+        $statement->bindValue(':username', $username);
+        $statement->bindValue(':password', $password);
         $statement->bindValue(':name', $name);
-        $statement->bindValue(':description', $description);
-        $statement->bindValue(':price', $price);
-        $statement->bindValue(':discount_percent', $discount_percent);
+        $statement->bindValue(':email', $email);
+        $statement->bindValue(':phone', $phone);
+        $statement->bindValue(':address', $address);
         $statement->execute();
         $statement->closeCursor();
 
@@ -62,25 +63,27 @@ function add_user($category_id, $code, $name, $description,
     }
 }
 
-function update_user($user_id, $code, $name, $description,
-                        $price, $discount_percent, $category_id) {
+function update_user($user_id, $flag_admin, $username, $password,
+                        $name, $email, $phone, $address) {
     global $db;
     $query = 'UPDATE Products
-              SET userName = :name,
-                  userCode = :code,
-                  description = :description,
-                  listPrice = :price,
-                  discountPercent = :discount_percent,
-                  category_id = :category_id
+              SET flag_admin = :flag_admin,
+                  username = :username,
+                  password = :password,
+                  name = :name,
+                  email = :email,
+                  phone = :phone
+                  address = :address
               WHERE user_id = :user_id';
     try {
         $statement = $db->prepare($query);
+        $statement->bindValue(':flag_admin', $flag_admin);
+        $statement->bindValue(':username', $username);
+        $statement->bindValue(':password', $password);
         $statement->bindValue(':name', $name);
-        $statement->bindValue(':code', $code);
-        $statement->bindValue(':description', $description);
-        $statement->bindValue(':price', $price);
-        $statement->bindValue(':discount_percent', $discount_percent);
-        $statement->bindValue(':category_id', $category_id);
+        $statement->bindValue(':email', $email);
+        $statement->bindValue(':phone', $phone);
+        $statement->bindValue(':address', $address);
         $statement->bindValue(':user_id', $user_id);
         $row_count = $statement->execute();
         $statement->closeCursor();
@@ -93,7 +96,7 @@ function update_user($user_id, $code, $name, $description,
 
 function delete_user($user_id) {
     global $db;
-    $query = 'DELETE FROM users WHERE user_id = :user_id';
+    $query = 'DELETE FROM user WHERE user_id = :user_id';
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':user_id', $user_id);

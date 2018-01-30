@@ -2,7 +2,7 @@
 
 function get_results_by_user($user_id) {
     global $db;
-    $query = 'SELECT * FROM results
+    $query = 'SELECT * FROM result
               WHERE user_id = :user_id
               ORDER BY result_id';
     try {
@@ -20,7 +20,7 @@ function get_results_by_user($user_id) {
 
 function get_results_by_subject($subject_id) {
     global $db;
-    $query = 'SELECT * FROM results
+    $query = 'SELECT * FROM result
               WHERE subject_id = :subject_id
               ORDER BY result_id';
     try {
@@ -38,7 +38,7 @@ function get_results_by_subject($subject_id) {
 
 function get_results() {
     global $db;
-    $query = 'SELECT * FROM results ORDER BY result_id';
+    $query = 'SELECT * FROM result ORDER BY result_id';
     try {
         $statement = $db->prepare($query);
         $statement->execute();
@@ -54,7 +54,7 @@ function get_results() {
 function get_result($result_id) {
     global $db;
     $query = 'SELECT *
-              FROM results
+              FROM result
               WHERE result_id = :result_id';
     try {
         $statement = $db->prepare($query);
@@ -69,23 +69,18 @@ function get_result($result_id) {
     }
 }
 
-function add_result($category_id, $code, $name, $description,
+function add_result($user_id, $subject_id, $name, $description,
         $price, $discount_percent) {
     global $db;
-    $query = 'INSERT INTO results
-                 (category_id, resultCode, resultName, description,
-                  listPrice, discountPercent, dateAdded)
+    $query = 'INSERT INTO result
+                 (user_id, subject_id, grade, testDate)
               VALUES
-                 (:category_id, :code, :name, :description, :price,
-                  :discount_percent, NOW())';
+                 (:user_id, :subject_id, :grade, NOW())';
     try {
         $statement = $db->prepare($query);
-        $statement->bindValue(':category_id', $category_id);
-        $statement->bindValue(':code', $code);
-        $statement->bindValue(':name', $name);
-        $statement->bindValue(':description', $description);
-        $statement->bindValue(':price', $price);
-        $statement->bindValue(':discount_percent', $discount_percent);
+        $statement->bindValue(':user_id', $user_id);
+        $statement->bindValue(':subject_id', $code);
+        $statement->bindValue(':grade', $name);
         $statement->execute();
         $statement->closeCursor();
 
@@ -98,25 +93,19 @@ function add_result($category_id, $code, $name, $description,
     }
 }
 
-function update_result($result_id, $code, $name, $description,
-                        $price, $discount_percent, $category_id) {
+function update_result($result_id, $user_id, $subject_id, $grade) {
     global $db;
-    $query = 'UPDATE Products
-              SET resultName = :name,
-                  resultCode = :code,
-                  description = :description,
-                  listPrice = :price,
-                  discountPercent = :discount_percent,
-                  category_id = :category_id
+    $query = 'UPDATE result
+              SET user_id = :user_id,
+                  subject_id = :subject_id,
+                  grade = :grade,
+                  testDate = NOW()
               WHERE result_id = :result_id';
     try {
         $statement = $db->prepare($query);
-        $statement->bindValue(':name', $name);
-        $statement->bindValue(':code', $code);
-        $statement->bindValue(':description', $description);
-        $statement->bindValue(':price', $price);
-        $statement->bindValue(':discount_percent', $discount_percent);
-        $statement->bindValue(':category_id', $category_id);
+		$statement->bindValue(':user_id', $user_id);
+        $statement->bindValue(':subject_id', $code);
+        $statement->bindValue(':grade', $name);
         $statement->bindValue(':result_id', $result_id);
         $row_count = $statement->execute();
         $statement->closeCursor();
@@ -129,7 +118,7 @@ function update_result($result_id, $code, $name, $description,
 
 function delete_result($result_id) {
     global $db;
-    $query = 'DELETE FROM results WHERE result_id = :result_id';
+    $query = 'DELETE FROM result WHERE result_id = :result_id';
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':result_id', $result_id);

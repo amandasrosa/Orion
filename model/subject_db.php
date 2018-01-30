@@ -2,7 +2,7 @@
 
 function get_subjects() {
     global $db;
-    $query = 'SELECT * FROM subjects ORDER BY subject_id';
+    $query = 'SELECT * FROM subject ORDER BY subject_id';
     try {
         $statement = $db->prepare($query);
         $statement->execute();
@@ -18,7 +18,7 @@ function get_subjects() {
 function get_subject($subject_id) {
     global $db;
     $query = 'SELECT *
-              FROM subjects
+              FROM subject
               WHERE subject_id = :subject_id';
     try {
         $statement = $db->prepare($query);
@@ -36,20 +36,13 @@ function get_subject($subject_id) {
 function add_subject($category_id, $code, $name, $description,
         $price, $discount_percent) {
     global $db;
-    $query = 'INSERT INTO subjects
-                 (category_id, subjectCode, subjectName, description,
-                  listPrice, discountPercent, dateAdded)
+    $query = 'INSERT INTO subject
+                 (description)
               VALUES
-                 (:category_id, :code, :name, :description, :price,
-                  :discount_percent, NOW())';
+                 (:description)';
     try {
         $statement = $db->prepare($query);
-        $statement->bindValue(':category_id', $category_id);
-        $statement->bindValue(':code', $code);
-        $statement->bindValue(':name', $name);
         $statement->bindValue(':description', $description);
-        $statement->bindValue(':price', $price);
-        $statement->bindValue(':discount_percent', $discount_percent);
         $statement->execute();
         $statement->closeCursor();
 
@@ -62,25 +55,14 @@ function add_subject($category_id, $code, $name, $description,
     }
 }
 
-function update_subject($subject_id, $code, $name, $description,
-                        $price, $discount_percent, $category_id) {
+function update_subject($subject_id, $description) {
     global $db;
-    $query = 'UPDATE Products
-              SET subjectName = :name,
-                  subjectCode = :code,
-                  description = :description,
-                  listPrice = :price,
-                  discountPercent = :discount_percent,
-                  category_id = :category_id
+    $query = 'UPDATE subject
+              SET description = :description,
               WHERE subject_id = :subject_id';
     try {
         $statement = $db->prepare($query);
-        $statement->bindValue(':name', $name);
-        $statement->bindValue(':code', $code);
         $statement->bindValue(':description', $description);
-        $statement->bindValue(':price', $price);
-        $statement->bindValue(':discount_percent', $discount_percent);
-        $statement->bindValue(':category_id', $category_id);
         $statement->bindValue(':subject_id', $subject_id);
         $row_count = $statement->execute();
         $statement->closeCursor();
@@ -93,7 +75,7 @@ function update_subject($subject_id, $code, $name, $description,
 
 function delete_subject($subject_id) {
     global $db;
-    $query = 'DELETE FROM subjects WHERE subject_id = :subject_id';
+    $query = 'DELETE FROM subject WHERE subject_id = :subject_id';
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':subject_id', $subject_id);

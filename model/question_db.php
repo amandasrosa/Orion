@@ -1,12 +1,12 @@
 <?php
 function get_questions_by_subject($subject_id) {
     global $db;
-    $query = 'SELECT * FROM questions
+    $query = 'SELECT * FROM question
               WHERE subject_id = :subject_id
               ORDER BY question_id';
     try {
         $statement = $db->prepare($query);
-        $statement->bindValue(':category_id', $category_id);
+        $statement->bindValue(':subject_id', $subject_id);
         $statement->execute();
         $result = $statement->fetchAll();
         $statement->closeCursor();
@@ -19,7 +19,7 @@ function get_questions_by_subject($subject_id) {
 
 function get_questions() {
     global $db;
-    $query = 'SELECT * FROM questions ORDER BY question_id';
+    $query = 'SELECT * FROM question ORDER BY question_id';
     try {
         $statement = $db->prepare($query);
         $statement->execute();
@@ -35,7 +35,7 @@ function get_questions() {
 function get_question($question_id) {
     global $db;
     $query = 'SELECT *
-              FROM questions
+              FROM question
               WHERE question_id = :question_id';
     try {
         $statement = $db->prepare($query);
@@ -50,23 +50,24 @@ function get_question($question_id) {
     }
 }
 
-function add_question($category_id, $code, $name, $description,
-        $price, $discount_percent) {
+function add_question($subject_id, $description, $optionA, $optionB,
+        $optionC, $optionD, $answer) {
     global $db;
-    $query = 'INSERT INTO questions
-                 (category_id, questionCode, questionName, description,
-                  listPrice, discountPercent, dateAdded)
+    $query = 'INSERT INTO question
+                 (subject_id, description, optionA, optionB,
+                  optionC, optionD, answer)
               VALUES
-                 (:category_id, :code, :name, :description, :price,
-                  :discount_percent, NOW())';
+                 (:subject_id, :description, :optionA, :optionB, :optionC,
+                  :optionD, :answer)';
     try {
         $statement = $db->prepare($query);
-        $statement->bindValue(':category_id', $category_id);
-        $statement->bindValue(':code', $code);
-        $statement->bindValue(':name', $name);
+        $statement->bindValue(':subject_id', $subject_id);
         $statement->bindValue(':description', $description);
-        $statement->bindValue(':price', $price);
-        $statement->bindValue(':discount_percent', $discount_percent);
+        $statement->bindValue(':optionA', $optionA);
+        $statement->bindValue(':optionB', $optionB);
+        $statement->bindValue(':optionC', $optionC);
+        $statement->bindValue(':optionD', $optionD);
+        $statement->bindValue(':answer', $answer);
         $statement->execute();
         $statement->closeCursor();
 
@@ -79,25 +80,27 @@ function add_question($category_id, $code, $name, $description,
     }
 }
 
-function update_question($question_id, $code, $name, $description,
-                        $price, $discount_percent, $category_id) {
+function update_question($question_id, $subject_id, $description,
+                        $optionA, $optionB, $optionC, $optionD, $answer) {
     global $db;
-    $query = 'UPDATE Products
-              SET questionName = :name,
-                  questionCode = :code,
+    $query = 'UPDATE question
+              SET subject_id = :subject_id,
                   description = :description,
-                  listPrice = :price,
-                  discountPercent = :discount_percent,
-                  category_id = :category_id
+                  optionA = :optionA,
+                  optionB = :optionB,
+                  optionC = :optionC,
+                  optionD = :optionD,
+                  answer = :answer,
               WHERE question_id = :question_id';
     try {
         $statement = $db->prepare($query);
-        $statement->bindValue(':name', $name);
-        $statement->bindValue(':code', $code);
+        $statement->bindValue(':subject_id', $subject_id);
         $statement->bindValue(':description', $description);
-        $statement->bindValue(':price', $price);
-        $statement->bindValue(':discount_percent', $discount_percent);
-        $statement->bindValue(':category_id', $category_id);
+        $statement->bindValue(':optionA', $optionA);
+        $statement->bindValue(':optionB', $optionB);
+        $statement->bindValue(':optionC', $optionC);
+        $statement->bindValue(':optionD', $optionD);
+        $statement->bindValue(':answer', $answer);
         $statement->bindValue(':question_id', $question_id);
         $row_count = $statement->execute();
         $statement->closeCursor();
@@ -110,7 +113,7 @@ function update_question($question_id, $code, $name, $description,
 
 function delete_question($question_id) {
     global $db;
-    $query = 'DELETE FROM questions WHERE question_id = :question_id';
+    $query = 'DELETE FROM question WHERE question_id = :question_id';
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':question_id', $question_id);
