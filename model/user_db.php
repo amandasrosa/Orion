@@ -15,14 +15,14 @@ function get_users() {
     }
 }
 
-function get_user($user_id) {
+function get_user($username) {
     global $db;
     $query = 'SELECT *
               FROM user
-              WHERE user_id = :user_id';
+              WHERE username = :username';
     try {
         $statement = $db->prepare($query);
-        $statement->bindValue(':user_id', $user_id);
+        $statement->bindValue(':username', $username);
         $statement->execute();
         $result = $statement->fetch();
         $statement->closeCursor();
@@ -37,17 +37,18 @@ function add_user($flag_admin, $username, $password, $name,
         $email, $phone, $address) {
     global $db;
     $query = 'INSERT INTO user
-                 (flag_admin, username, password, name,
+                 (flag_admin, username, password, first_name, last_name,
                   email, phone, address)
               VALUES
-                 (:flag_admin, :username, :password, :name, :email,
+                 (:flag_admin, :username, :password, :first_name, :last_name, :email,
                   :phone, :address)';
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':flag_admin', $flag_admin);
         $statement->bindValue(':username', $username);
         $statement->bindValue(':password', $password);
-        $statement->bindValue(':name', $name);
+        $statement->bindValue(':first_name', $first_name);
+        $statement->bindValue(':last_name', $last_name);
         $statement->bindValue(':email', $email);
         $statement->bindValue(':phone', $phone);
         $statement->bindValue(':address', $address);
@@ -64,13 +65,14 @@ function add_user($flag_admin, $username, $password, $name,
 }
 
 function update_user($user_id, $flag_admin, $username, $password,
-                        $name, $email, $phone, $address) {
+                        $first_name, $last_name, $email, $phone, $address) {
     global $db;
     $query = 'UPDATE Products
               SET flag_admin = :flag_admin,
                   username = :username,
                   password = :password,
-                  name = :name,
+                  first_name = :first_name,
+                  last_name = :last_name,
                   email = :email,
                   phone = :phone
                   address = :address
@@ -80,7 +82,8 @@ function update_user($user_id, $flag_admin, $username, $password,
         $statement->bindValue(':flag_admin', $flag_admin);
         $statement->bindValue(':username', $username);
         $statement->bindValue(':password', $password);
-        $statement->bindValue(':name', $name);
+        $statement->bindValue(':first_name', $first_name);
+        $statement->bindValue(':last_name', $last_name);
         $statement->bindValue(':email', $email);
         $statement->bindValue(':phone', $phone);
         $statement->bindValue(':address', $address);
