@@ -9,7 +9,7 @@
 
 <section class="text-center">
 
-    <form class="form-signin" action="login.php" method="post">
+    <form class="form-signin" action="userRegister.php" method="post">
         <h1 class="h3 mb-3 font-weight-normal">Welcome!</h1>
     
         <label for="inputUsername" class="sr-only">Username</label>
