@@ -46,16 +46,6 @@ body {
     margin: 0 auto;
 }
 
-.options-answers {
-    display: list-item;
-    text-align: left;
-    margin-left: 2em;
-}
-
-.options-answers input {
-    margin-right: 0.5em;
-}
-
 .form-group {
   padding: 1em;
 }
@@ -63,3 +53,4 @@ body {
 .cursor {
   cursor: pointer;
 }
+
