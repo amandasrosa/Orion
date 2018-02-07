@@ -1,0 +1,10 @@
+/* Styles for ordered and unordered lists */
+
+.list-group-question {
+    padding: 0.5em;
+    background-color: navy;
+}
+.list-group-answer {
+    padding: 0.25em;
+    background-color: white;
+}
