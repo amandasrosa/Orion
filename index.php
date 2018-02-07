@@ -7,9 +7,20 @@
 	include 'view/header.php'; 
 ?>
 
-<section>
+<section class="text-center">
 
-
+    <form class="form-signin" method="post">
+        <h1 class="h3 mb-3 font-weight-normal">Welcome!</h1>
+    
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="email" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+    
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <br>
+        <button class="btn btn-primary btn-block" type="submit" name="signIn">Sign in</button>
+        <button class="btn btn-primary btn-block" type="submit" name="register">Register</button>
+    </form>
 
 
 </section>
