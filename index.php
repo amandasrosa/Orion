@@ -9,19 +9,19 @@
 
 <section class="text-center">
 
-    <form class="form-signin" action="userRegister.php" method="post">
-        <h1 class="h3 mb-3 font-weight-normal">Welcome!</h1>
+    <form class="form-signin" action="userArea.php" method="post">
+        <h1>Welcome!</h1>
     
         <label for="inputUsername" class="sr-only">Username</label>
-        <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+        <input type="text" id="inputUsername" name="username" placeholder="Username" required autofocus>
     
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input type="password" id="inputPassword" name="password" placeholder="Password" required>
         <br>
-        <button class="btn btn-primary btn-block" type="submit" name="signIn">Sign in</button>
+        <button class="btn-basic" type="submit" name="signIn">Sign in</button>
     </form>
-    <form class="form-signin" action="userArea.php" method="post">
-        <button class="btn btn-primary btn-block" type="submit" name="register">Register</button>
+    <form class="form-signin" action="userRegister.php" method="post">
+        <button class="btn-basic" type="submit" name="register">Register</button>
     </form>
 
 </section>
