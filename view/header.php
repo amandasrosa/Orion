@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 </head>
 
-<body>
+<body class="text-center">
 <header>
     <h1>Orion Test Center</h1>
 </header>
