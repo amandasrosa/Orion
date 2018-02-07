@@ -28,7 +28,7 @@ include 'view/header.php'; ?>
 		</div>
 		<?php } ?>
 	</form>
-	<form class="form-group" action="login.php" method="post">
+	<form class="form-group" action="userRegister.php" method="post">
 		<button type="submit" class="btn btn-primary" name="editProfile" >Edit Profile</button>
 	</form>
 	<form class="form-group" action="index.php" method="post">
