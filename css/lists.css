@@ -2,20 +2,46 @@
 
 .list-group-question {
     padding: 0.5em;
+    border: 2px solid navy;
+}
+
+.list-group-question span:hover {
+    margin: -0.5em;
+    padding: 0.5em;
+    border: 0px none navy;
     background-color: navy;
+    color: silver;
+    display: block;
 }
 
-.list-group-answer {
+.list-group-answer li {
     padding: 0.25em;
-    background-color: white;
+    border-top: 1px solid silver;
 }
 
-.options-answers {
-    display: list-item;
-    text-align: left;
-    margin-left: 2em;
+.list-group-answer li:first-child {
+    border-top: 0px none silver;
 }
 
-.options-answers input {
+.list-group-answer li:hover {
+    background-color: silver;
+}
+
+.list-group-answer input {
     margin-right: 0.5em;
+    float: left;
+}
+
+.list-group-answer label {
+    margin: -0.25em;
+    padding: 0.25em;
+    width: 100%;
+    display: inline-block;
+}
+
+.list-group-answer span {
+    margin: 0;
+    padding: 0;
+    display: block;
+    overflow: hidden;
 }
