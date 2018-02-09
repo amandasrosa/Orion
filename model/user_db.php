@@ -33,7 +33,7 @@ function get_user($username) {
     }
 }
 
-function add_user($flag_admin, $username, $password, $name,
+function add_user($flag_admin, $username, $password, $first_name, $last_name,
         $email, $phone, $address) {
     global $db;
     $query = 'INSERT INTO user
