@@ -1,0 +1,62 @@
+.form-user-registration {
+    background: #f9f9f9;
+    border: 1px solid #c1c1c1;
+    margin-top: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+.input-user-resgistration {
+    background: #fff;
+    border: 1px solid #9c9c9c;
+    padding: 0.5em;
+    margin-bottom: 0.5rem;
+    box-sizing: border-box;
+    font-size: 1em;
+    width: 60%;
+    border-radius: 4px;
+}
+
+.label-user-resgistration {
+    text-align: right;
+    display: block;
+    padding: 0.5em 1.5em 0.5em 0;
+    box-sizing: border-box;
+}
+
+.label-right {
+    float: left;
+    width: 40%;
+}
+
+.btn-user-registration {
+    width: 60%;
+    margin-left: 40%;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.error {
+    border-color: red;
+}
+
+.error-message {
+    color: red;
+    font-size: .8em;
+    text-align: right;
+    margin-bottom: 1em;
+}
+
+.visible {
+    display: block;
+    visibility: visible;
+}
+
+.hidden {
+    display: none;
+    visibility: hidden;
+}
