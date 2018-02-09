@@ -7,16 +7,16 @@
 	include 'view/header.php'; 
 ?>
 
-<section class="text-center">
+<section>
 
     <form class="form-signin" action="userArea.php" method="post">
         <h1>Welcome!</h1>
     
-        <label for="inputUsername" class="sr-only">Username</label>
-        <input type="text" id="inputUsername" name="username" placeholder="Username" required autofocus>
+        <label for="inputUsername" class="sr-only">Username: </label>
+        <input type="text" id="inputUsername" name="username" class="input-user-resgistration" placeholder="Username" required autofocus>
     
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" name="password" placeholder="Password" required>
+        <label for="inputPassword" class="sr-only">Password: </label>
+        <input type="password" id="inputPassword" name="password" class="input-user-resgistration" placeholder="Password" required>
         <br>
         <button class="btn-basic" type="submit" name="signIn">Sign in</button>
     </form>

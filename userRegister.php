@@ -33,7 +33,7 @@ function getInputData() {
 include 'view/header.php'; ?>
 
     <section style="margin: 0 auto; width: 50%">
-        <form action="userRegister.php" method="post" class="form-group form-user-registration validate">
+        <form action="userRegister.php" method="post" class="form-user-registration validate">
             <h1 class="center-text">User Registration:</h1>
 
             <label for="inputUsername" class="label-user-resgistration label-right">Username:</label>

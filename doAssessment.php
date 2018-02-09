@@ -38,8 +38,8 @@ include 'view/header.php'; ?>
                     <span><label for="<?php echo $item["question_id"]; ?>d"><?php echo htmlspecialchars($item["optionD"]); ?></label></span></li>
             </ol>
         <?php } ?></ol>
-        <input type="button" name="abort" value="Abort Test">
-        <input type="submit" name="submit" value="Submit Answers">
+        <button type="button" class="btn-basic" name="abort">Abort Test</button>
+        <button type="submit" class="btn-basic"  name="submit">Submit Answers</button>
     </form>
 </section>
 
