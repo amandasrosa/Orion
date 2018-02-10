@@ -1,0 +1,27 @@
+table, td, th {
+    border: 0px solid black;
+}
+
+table {
+    border-collapse: collapse;
+    width: 95%;
+    margin: auto; 
+}
+
+.table-cell-question:hover {
+    background-color: silver;
+}
+
+.table-cell-question:focus {
+    background-color: white;
+}
+
+.table-cell-options ol {
+    margin: 0;
+    padding-left: 1.3em;
+    width: 100%;
+}
+
+.table-cell-options ol input {
+    margin: 0;
+}
