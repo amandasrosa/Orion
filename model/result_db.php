@@ -69,8 +69,7 @@ function get_result($result_id) {
     }
 }
 
-function add_result($user_id, $subject_id, $name, $description,
-        $price, $discount_percent) {
+function add_result($result_id, $user_id, $subject_id, $grade, $testDate) {
     global $db;
     $query = 'INSERT INTO result
                  (user_id, subject_id, grade, testDate)
@@ -79,8 +78,9 @@ function add_result($user_id, $subject_id, $name, $description,
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':user_id', $user_id);
-        $statement->bindValue(':subject_id', $code);
-        $statement->bindValue(':grade', $name);
+        $statement->bindValue(':subject_id', $subject_id);
+        $statement->bindValue(':testDate', $testDate);
+        $statement->bindValue(':grade', $grade);
         $statement->execute();
         $statement->closeCursor();
 
@@ -93,7 +93,7 @@ function add_result($user_id, $subject_id, $name, $description,
     }
 }
 
-function update_result($result_id, $user_id, $subject_id, $grade) {
+function update_result($result_id, $user_id, $subject_id, $grade, $testDate) {
     global $db;
     $query = 'UPDATE result
               SET user_id = :user_id,
@@ -104,8 +104,9 @@ function update_result($result_id, $user_id, $subject_id, $grade) {
     try {
         $statement = $db->prepare($query);
 		$statement->bindValue(':user_id', $user_id);
-        $statement->bindValue(':subject_id', $code);
-        $statement->bindValue(':grade', $name);
+        $statement->bindValue(':subject_id', $subject_id);
+        $statement->bindValue(':grade', $grade);
+        $statement->bindValue(':testDate', $testDate);
         $statement->bindValue(':result_id', $result_id);
         $row_count = $statement->execute();
         $statement->closeCursor();

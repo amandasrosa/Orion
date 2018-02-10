@@ -1,8 +1,12 @@
 <?php 
+session_start();
 require_once('model/database.php');
 require_once('model/question_db.php');
 
-$subjectId = filter_input(INPUT_POST, "subjectId");
+$subjectId = filter_input(INPUT_POST, "subjectRadio");
+
+$_SESSION['subjectId'] = $subjectId;
+
 if (!isset($subjectId)) { $subjectId = "1"; }
 
 $questions = get_questions_by_subject($subjectId);
@@ -11,25 +15,25 @@ $selectedQuestions = array();
 
 do {
     $i = mt_rand(0, count($questions) - 1);
-    if (!array_search($questions[$i], $selectedQuestions)) {
+    if (!in_array($questions[$i], $selectedQuestions)) {
         $selectedQuestions[] = $questions[$i];
     }
 } while (count($selectedQuestions) < 10);
 
-echo "<pre>";
+//echo "<pre>";
 // print_r($selectedQuestions);
-echo "</pre>";
+//echo "</pre>";
 
 include 'view/header.php'; ?>
 
 <section>
 
-    <form class="form-questions" action="doAssessment.php" method="post">
+    <form class="form-questions" action="assessmentResult.php" method="post">
         <ol><?php foreach ($selectedQuestions as $item) { ?>
             <li class="list-group-question"><span><?php echo htmlspecialchars($item["description"]); ?></span></li>
             <ol  class="list-group-answer" type="a">
                 <li>
-                    <input type="radio" name="<?php echo $item["question_id"]; ?>" value="a" id="<?php echo $item["question_id"]; ?>a">
+                    <input type="radio" name="<?php echo $item["question_id"]; ?>" value="a" id="<?php echo $item["question_id"]; ?>a" required>
                     <span><label class="cursor" for="<?php echo $item["question_id"]; ?>a"><?php echo htmlspecialchars($item["optionA"]); ?></label></span>
                 </li>
                 <li>
@@ -47,7 +51,7 @@ include 'view/header.php'; ?>
             </ol>
         <?php } ?></ol>
         <button type="button" class="btn-basic" name="abort">Abort Test</button>
-        <button type="submit" class="btn-basic"  name="submit">Submit Answers</button>
+        <button type="submit" class="btn-basic" name="">Submit Answers</button>
     </form>
 </section>
 
