@@ -75,10 +75,23 @@ header h1 {
 
 .editOptions {
   margin-left: 3em;
-  width: 56% !important;
+  width: 57% !important;
 }
 
 .alignBottomImg {
   vertical-align: bottom;
 }
 
+.addIcon {
+  margin-left: 62%;
+}
+
+.form-editQS {
+  width: 100%;
+  padding-left: 2em;
+  margin: 0 auto;
+}
+
+.fontSmaller {
+  font-size: 0.8em !important;
+}
