@@ -60,8 +60,8 @@ if (!isset($subjectId)) { $subjectId = "1"; }
             <tr>
                 <td><?php echo htmlspecialchars($question['question_id']);?></td>
                 <td class="table-cell-question" contenteditable="true"><?php echo htmlspecialchars($question['description']);?></td>
-                <td><input type="image" src="images/arrow-down-icon.png" alt="Collapse" height="45" width="45" class="alignBottomImg cursor" value="<?php echo $question['question_id'];?>" onclick="toggleOptions(this)"/></td>
-                <td><input type="image" src="images/delete-icon.png" alt="Delete" height="45" width="45" class="alignBottomImg cursor"/></td>
+                <td><input type="image" src="images/arrow-down-icon.png" alt="Collapse" height="45" width="45" class="alignBottomImg cursor" value="<?php echo $question['question_id'];?>" onclick="toggleOptions(this);return false;"/></td>
+                <td><input type="image" src="images/delete-icon.png" alt="Delete" height="45" width="45" class="alignBottomImg cursor" onclick="return false;"/></td>
             </tr>
             <tr >
                 <td></td>
