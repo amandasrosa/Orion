@@ -79,8 +79,9 @@ $questions = get_questions_by_subject("1");
         <?php } ?>
         </tbody>
     </table>
-
-	<img src="images/add-icon.png" alt="Add" height="45" width="45" class="cursor addIcon">
+    <div class="center">
+        <button type="submit" class="btn-basic center" name="add" >Add Question</button>
+    </div>
 
 <?php } ?>
 <div class="center">
