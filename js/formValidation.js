@@ -6,7 +6,6 @@ for (var i = 0; i < forms.length; i++) {
 var hasError = function (field) {
 
     if (field.disabled || field.type == 'file' || field.type == 'reset' || field.type == 'submit' || field.type == 'button') return false;
-    console.log(field.validity.valid);
     return !field.validity.valid;
 };
 
@@ -54,7 +53,6 @@ document.addEventListener('blur', function (ev) {
 
 document.addEventListener('submit', function (event) {
 
-    console.log("teste")
     if (!event.target.classList.contains('validate')) return;
 
     var fields = event.target.elements;
@@ -69,7 +67,10 @@ document.addEventListener('submit', function (event) {
 
     if (hasErrors) {
         event.preventDefault();
-        // hasErrors.focus();
     }
 
 }, false);
+
+document.querySelector('#cancel').addEventListener('click', function (event) {
+    window.location.replace("http://localhost/orion/");
+});

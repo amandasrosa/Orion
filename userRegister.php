@@ -5,15 +5,23 @@ require_once('model/user_db.php');
 
 if (isset($_POST['registerUser'])) {
     $user = getInputData();
-    add_user(
-        false,
-        $user['username'],
-        $user['password'],
-        $user['firstName'],
-        $user['lastName'],
-        $user['email'],
-        $user['phone'],
-        $user['address']);
+    $userId = add_user(
+                false,
+                $user['username'],
+                $user['password'],
+                $user['firstName'],
+                $user['lastName'],
+                $user['email'],
+                $user['phone'],
+                $user['address']);
+
+    if ($userId) {
+        
+    }
+    echo $userId;
+} else if (isset($_POST['cancel'])) {
+    header("Location: http://localhost/orion/");
+    die();
 }
 
 function getInputData() {
@@ -37,8 +45,7 @@ include 'view/header.php'; ?>
             <h1 class="center-text">User Registration:</h1>
 
             <label for="inputUsername" class="label-user-resgistration label-right">Username:</label>
-            <input type="text" name="inputUsername" class="input-user-resgistration" placeholder="Username" required
-                   autofocus>
+            <input type="text" name="inputUsername" class="input-user-resgistration" placeholder="Username" required>
             <div class="error-message hidden" id="error-for-inputUsername">Please choose a username.</div>
 
             <label for="inputPassword" class="label-user-resgistration label-right">Password:</label>
@@ -73,6 +80,7 @@ include 'view/header.php'; ?>
             <div class="error-message hidden" id="error-for-inputAddress">Please inform your address.</div>
 
             <input class="btn-basic btn-user-registration" type="submit" value="Register" name="registerUser">
+            <input class="btn-basic btn-user-registration" type="button" value="Cancel" name="cancel" id="cancel">
         </form>
     </section>
     <script src="js/formValidation.js"></script>
