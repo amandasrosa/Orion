@@ -2,11 +2,12 @@
 
 require_once('model/database.php');
 require_once('model/user_db.php');
+require_once('model/util.php');
 
 if (isset($_POST['registerUser'])) {
     $user = getInputData();
 
-    if (validateUser($user)) {
+    if (isValid($user)) {
         $userId = add_user(
             false,
             $user['username'],
@@ -38,8 +39,11 @@ function getInputData() {
     return $user;
 }
 
-function validateUser($user) {
+function isValid($user) {
 
+    if(get_user($user['username'])) {
+        return false;
+    }
     return true;
 }
 
@@ -84,9 +88,16 @@ include 'view/header.php'; ?>
             <input type="tel" name="inputAddress" class="input-user-resgistration"ds placeholder="Address" required>
             <div class="error-message hidden" id="error-for-inputAddress">Please inform your address.</div>
 
+            <section>
+                <?php if (!empty($user['username']) && !isValid($user)) {
+                    showErrorMessage("Sorry, a user already exist with this username");
+                }
+                ?>
+            </section>
+
             <section class="user-registration-buttons">
-                <input class="btn-basic btn-user-registration" type="submit" value="Register" name="registerUser">
                 <input class="btn-basic btn-user-registration" type="button" value="Cancel" name="cancel" id="cancel">
+                <input class="btn-basic `btn-user-registration" type="submit" value="Register" name="registerUser">
             </section>
         </form>
     </section>
