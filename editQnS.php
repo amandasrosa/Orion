@@ -85,7 +85,8 @@ $questions = get_questions_by_subject("1");
 
 <?php } ?>
 <div class="center">
-	<button type="submit" class="btn-basic" name="save" >Save</button>
+	<button type="submit" class="btn-basic" name="save" >Save</button><br>
+    <button type="submit" class="btn-basic" name="back" >Back to Menu</button>
 </div>
 </form>
 </section>
