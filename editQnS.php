@@ -5,8 +5,7 @@ require_once('model/question_db.php');
 require_once('model/subject_db.php');
 
 include 'view/header.php';
-
-$questions = get_questions_by_subject("1");
+if (!isset($subjectId)) { $subjectId = "1"; }
 ?>
 <script>
         function toggleOptions(element) {
@@ -85,10 +84,12 @@ $questions = get_questions_by_subject("1");
 
 <?php } ?>
 <div class="center">
-	<button type="submit" class="btn-basic" name="save" >Save</button><br>
-    <button type="submit" class="btn-basic" name="back" >Back to Menu</button>
+	<button type="submit" class="btn-basic" name="save" >Save</button>
 </div>
 </form>
+    <form class="form-editQS center " action="userArea.php" method="post">
+		<button type="submit" class="btn-basic" name="back">Back to Menu</button>
+	</form>
 </section>
 
 <?php include 'view/footer.php'; ?>
