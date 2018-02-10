@@ -33,16 +33,16 @@ function get_subject($subject_id) {
     }
 }
 
-function add_subject($category_id, $code, $name, $description,
-        $price, $discount_percent) {
+function add_subject($subject_id, $description, $active) {
     global $db;
     $query = 'INSERT INTO subject
-                 (description)
+                 (description, active)
               VALUES
-                 (:description)';
+                 (:description, :active)';
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':description', $description);
+        $statement->bindValue(':active', $active);
         $statement->execute();
         $statement->closeCursor();
 
@@ -55,14 +55,16 @@ function add_subject($category_id, $code, $name, $description,
     }
 }
 
-function update_subject($subject_id, $description) {
+function update_subject($subject_id, $description, $active) {
     global $db;
     $query = 'UPDATE subject
               SET description = :description,
+              SET active = :active,
               WHERE subject_id = :subject_id';
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':description', $description);
+        $statement->bindValue(':active', $active);
         $statement->bindValue(':subject_id', $subject_id);
         $row_count = $statement->execute();
         $statement->closeCursor();

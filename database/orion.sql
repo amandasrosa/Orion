@@ -13,19 +13,21 @@ CREATE TABLE `user` (
 
 CREATE TABLE `subject` (
   `subject_id` int(11) NOT NULL AUTO_INCREMENT,
-  `description` varchar(20) NOT NULL,
+  `description` varchar(30) NOT NULL,
+  `active` boolean NOT NULL DEFAULT 1,
   PRIMARY KEY (`subject_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `question` (
   `question_id` int(11) NOT NULL AUTO_INCREMENT,
   `subject_id` int(11) NOT NULL,
-  `description` varchar(100) DEFAULT NULL,
-  `optionA` varchar(100) DEFAULT NULL,
-  `optionB` varchar(100) DEFAULT NULL,
-  `optionC` varchar(100) DEFAULT NULL,
-  `optionD` varchar(100) DEFAULT NULL,
+  `description` varchar(140) DEFAULT NULL,
+  `optionA` varchar(140) DEFAULT NULL,
+  `optionB` varchar(140) DEFAULT NULL,
+  `optionC` varchar(140) DEFAULT NULL,
+  `optionD` varchar(140) DEFAULT NULL,
   `answer` enum('a','b','c','d') DEFAULT NULL,
+  `active` boolean NOT NULL DEFAULT 1,
   PRIMARY KEY (`question_id`),
   FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`) 
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;

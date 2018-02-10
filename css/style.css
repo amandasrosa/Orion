@@ -72,3 +72,13 @@ header h1 {
 .cursor input[type="radio"] {
   margin: 1em 0;
 }
+
+.editOptions {
+  margin-left: 3em;
+  width: 56% !important;
+}
+
+.alignBottomImg {
+  vertical-align: bottom;
+}
+

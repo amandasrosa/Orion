@@ -51,14 +51,14 @@ function get_question($question_id) {
 }
 
 function add_question($subject_id, $description, $optionA, $optionB,
-        $optionC, $optionD, $answer) {
+        $optionC, $optionD, $answer, $active) {
     global $db;
     $query = 'INSERT INTO question
                  (subject_id, description, optionA, optionB,
-                  optionC, optionD, answer)
+                  optionC, optionD, answer, active)
               VALUES
                  (:subject_id, :description, :optionA, :optionB, :optionC,
-                  :optionD, :answer)';
+                  :optionD, :answer, :active)';
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':subject_id', $subject_id);
@@ -68,6 +68,7 @@ function add_question($subject_id, $description, $optionA, $optionB,
         $statement->bindValue(':optionC', $optionC);
         $statement->bindValue(':optionD', $optionD);
         $statement->bindValue(':answer', $answer);
+        $statement->bindValue(':active', $active);
         $statement->execute();
         $statement->closeCursor();
 
@@ -81,7 +82,7 @@ function add_question($subject_id, $description, $optionA, $optionB,
 }
 
 function update_question($question_id, $subject_id, $description,
-                        $optionA, $optionB, $optionC, $optionD, $answer) {
+                        $optionA, $optionB, $optionC, $optionD, $answer, $active) {
     global $db;
     $query = 'UPDATE question
               SET subject_id = :subject_id,
@@ -91,6 +92,7 @@ function update_question($question_id, $subject_id, $description,
                   optionC = :optionC,
                   optionD = :optionD,
                   answer = :answer,
+                  active = :active,
               WHERE question_id = :question_id';
     try {
         $statement = $db->prepare($query);
@@ -101,6 +103,7 @@ function update_question($question_id, $subject_id, $description,
         $statement->bindValue(':optionC', $optionC);
         $statement->bindValue(':optionD', $optionD);
         $statement->bindValue(':answer', $answer);
+        $statement->bindValue(':active', $active);
         $statement->bindValue(':question_id', $question_id);
         $row_count = $statement->execute();
         $statement->closeCursor();
