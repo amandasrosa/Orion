@@ -33,7 +33,7 @@ if (!isset($subjectId)) { $subjectId = "1"; }
 	</div>
 	<?php }?>
 	<div class="center">
-        <button type="submit" class="btn-basic center" name="add" >Add Question</button>
+        <button type="submit" class="btn-basic center" name="add" >Add Subject</button>
     </div>
 
 <?php } ?>
