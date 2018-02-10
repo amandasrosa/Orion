@@ -5,8 +5,7 @@ require_once('model/question_db.php');
 require_once('model/subject_db.php');
 
 include 'view/header.php';
-
-$questions = get_questions_by_subject("1");
+if (!isset($subjectId)) { $subjectId = "1"; }
 ?>
 <script>
         function toggleOptions(element) {
@@ -33,8 +32,9 @@ $questions = get_questions_by_subject("1");
 		<img src="images/delete-icon.png" alt="Delete" height="45" width="45" class="alignBottomImg cursor">
 	</div>
 	<?php }?>
-	<img src="images/add-icon.png" alt="Add" height="45" width="45" class="cursor addIcon">
-
+	<div class="center">
+        <button type="submit" class="btn-basic center" name="add" >Add Subject</button>
+    </div>
 
 <?php } ?>
 
@@ -60,8 +60,8 @@ $questions = get_questions_by_subject("1");
             <tr>
                 <td><?php echo htmlspecialchars($question['question_id']);?></td>
                 <td class="table-cell-question" contenteditable="true"><?php echo htmlspecialchars($question['description']);?></td>
-                <td><input type="image" src="images/arrow-down-icon.png" alt="Collapse" height="45" width="45" class="alignBottomImg cursor" value="<?php echo $question['question_id'];?>" onclick="toggleOptions(this)"/></td>
-                <td><input type="image" src="images/delete-icon.png" alt="Delete" height="45" width="45" class="alignBottomImg cursor"/></td>
+                <td><input type="image" src="images/arrow-down-icon.png" alt="Collapse" height="45" width="45" class="alignBottomImg cursor" value="<?php echo $question['question_id'];?>" onclick="toggleOptions(this);return false;"/></td>
+                <td><input type="image" src="images/delete-icon.png" alt="Delete" height="45" width="45" class="alignBottomImg cursor" onclick="return false;"/></td>
             </tr>
             <tr >
                 <td></td>
@@ -79,14 +79,18 @@ $questions = get_questions_by_subject("1");
         <?php } ?>
         </tbody>
     </table>
-
-	<img src="images/add-icon.png" alt="Add" height="45" width="45" class="cursor addIcon">
+    <div class="center">
+        <button type="submit" class="btn-basic center" name="add" >Add Question</button>
+    </div>
 
 <?php } ?>
 <div class="center">
 	<button type="submit" class="btn-basic" name="save" >Save</button>
 </div>
 </form>
+    <form class="form-editQS center " action="userArea.php" method="post">
+		<button type="submit" class="btn-basic" name="back">Back to Menu</button>
+	</form>
 </section>
 
 <?php include 'view/footer.php'; ?>
