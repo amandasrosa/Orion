@@ -5,27 +5,27 @@ require_once('model/user_db.php');
 
 if (isset($_POST['registerUser'])) {
     $user = getInputData();
-    $userId = add_user(
-                false,
-                $user['username'],
-                $user['password'],
-                $user['firstName'],
-                $user['lastName'],
-                $user['email'],
-                $user['phone'],
-                $user['address']);
 
-    if ($userId) {
-        
+    if (validateUser($user)) {
+        $userId = add_user(
+            false,
+            $user['username'],
+            $user['password'],
+            $user['firstName'],
+            $user['lastName'],
+            $user['email'],
+            $user['phone'],
+            $user['address']);
+
+        if ($userId) {
+            $userFullName = $user['firstName'] . " " . $user['lastName'];
+            header("Location: http://localhost/orion/userConfirmation.php?userFullName=$userFullName");
+            die();
+        }
     }
-    echo $userId;
-} else if (isset($_POST['cancel'])) {
-    header("Location: http://localhost/orion/");
-    die();
 }
 
 function getInputData() {
-
     $user = [];
     $user['username'] = filter_input(INPUT_POST, "inputUsername");
     $user['password'] = filter_input(INPUT_POST, "inputPassword");
@@ -36,6 +36,11 @@ function getInputData() {
     $user['address'] = filter_input(INPUT_POST, "inputAddress");
 
     return $user;
+}
+
+function validateUser($user) {
+
+    return true;
 }
 
 include 'view/header.php'; ?>
@@ -79,8 +84,10 @@ include 'view/header.php'; ?>
             <input type="tel" name="inputAddress" class="input-user-resgistration"ds placeholder="Address" required>
             <div class="error-message hidden" id="error-for-inputAddress">Please inform your address.</div>
 
-            <input class="btn-basic btn-user-registration" type="submit" value="Register" name="registerUser">
-            <input class="btn-basic btn-user-registration" type="button" value="Cancel" name="cancel" id="cancel">
+            <section class="user-registration-buttons">
+                <input class="btn-basic btn-user-registration" type="submit" value="Register" name="registerUser">
+                <input class="btn-basic btn-user-registration" type="button" value="Cancel" name="cancel" id="cancel">
+            </section>
         </form>
     </section>
     <script src="js/formValidation.js"></script>

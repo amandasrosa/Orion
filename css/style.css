@@ -65,6 +65,11 @@ header h1 {
   text-align: center;
 }
 
+.center-section {
+    margin: 0 auto;
+    width: 50%;
+}
+
 .cursor {
   cursor: pointer;
 }
@@ -81,4 +86,3 @@ header h1 {
 .alignBottomImg {
   vertical-align: bottom;
 }
-

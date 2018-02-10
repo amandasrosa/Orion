@@ -6,6 +6,7 @@
     margin-left: auto;
     margin-right: auto;
     box-sizing: border-box;
+    padding: 0 2.5em 1em 1em;
 }
 
 .input-user-resgistration {
@@ -31,9 +32,11 @@
     width: 40%;
 }
 
-.btn-user-registration {
-    width: 60%;
-    margin-left: 40%;
+.user-registration-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2em;
+
 }
 
 .center-text {
@@ -59,4 +62,21 @@
 .hidden {
     display: none;
     visibility: hidden;
+}
+
+.parent-user-confirmation {
+    width: 100%;
+    height:100vh;
+    position: relative
+}
+
+.user-confirmation {
+    background: #f9f9f9;
+    border: 1px solid #c1c1c1;
+    max-width: 600px;
+    padding: 2em;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate( -50%, -50%);
 }
