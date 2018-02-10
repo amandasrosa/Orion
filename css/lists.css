@@ -14,6 +14,13 @@
     display: block;
 }
 
+.list-group-question span {
+    margin: 0;
+    padding: 0;
+    display: block;
+    overflow: hidden;
+}
+
 .list-group-answer li {
     padding: 0.25em;
     border-top: 1px solid silver;
