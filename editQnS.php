@@ -32,8 +32,9 @@ if (!isset($subjectId)) { $subjectId = "1"; }
 		<img src="images/delete-icon.png" alt="Delete" height="45" width="45" class="alignBottomImg cursor">
 	</div>
 	<?php }?>
-	<img src="images/add-icon.png" alt="Add" height="45" width="45" class="cursor addIcon">
-
+	<div class="center">
+        <button type="submit" class="btn-basic center" name="add" >Add Question</button>
+    </div>
 
 <?php } ?>
 
