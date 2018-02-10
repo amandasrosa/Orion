@@ -28,14 +28,22 @@ include 'view/header.php'; ?>
         <ol><?php foreach ($selectedQuestions as $item) { ?>
             <li class="list-group-question"><span><?php echo htmlspecialchars($item["description"]); ?></span></li>
             <ol  class="list-group-answer" type="a">
-                <li><input type="radio" name="<?php echo $item["question_id"]; ?>" value="a" id="<?php echo $item["question_id"]; ?>a">
-                    <span><label class="cursor" for="<?php echo $item["question_id"]; ?>a"><?php echo htmlspecialchars($item["optionA"]); ?></label></span></li>
-                <li><input type="radio" name="<?php echo $item["question_id"]; ?>" value="b" id="<?php echo $item["question_id"]; ?>b">
-                    <span><label class="cursor" for="<?php echo $item["question_id"]; ?>b"><?php echo htmlspecialchars($item["optionB"]); ?></label></span></li>
-                <li><input type="radio" name="<?php echo $item["question_id"]; ?>" value="c" id="<?php echo $item["question_id"]; ?>c">
-                    <span><label class="cursor" for="<?php echo $item["question_id"]; ?>c"><?php echo htmlspecialchars($item["optionC"]); ?></label></span></li>
-                <li><input type="radio" name="<?php echo $item["question_id"]; ?>" value="d" id="<?php echo $item["question_id"]; ?>d">
-                    <span><label class="cursor" for="<?php echo $item["question_id"]; ?>d"><?php echo htmlspecialchars($item["optionD"]); ?></label></span></li>
+                <li>
+                    <input type="radio" name="<?php echo $item["question_id"]; ?>" value="a" id="<?php echo $item["question_id"]; ?>a">
+                    <span><label class="cursor" for="<?php echo $item["question_id"]; ?>a"><?php echo htmlspecialchars($item["optionA"]); ?></label></span>
+                </li>
+                <li>
+                    <input type="radio" name="<?php echo $item["question_id"]; ?>" value="b" id="<?php echo $item["question_id"]; ?>b">
+                    <span><label class="cursor" for="<?php echo $item["question_id"]; ?>b"><?php echo htmlspecialchars($item["optionB"]); ?></label></span>
+                </li>
+                <li>
+                    <input type="radio" name="<?php echo $item["question_id"]; ?>" value="c" id="<?php echo $item["question_id"]; ?>c">
+                    <span><label class="cursor" for="<?php echo $item["question_id"]; ?>c"><?php echo htmlspecialchars($item["optionC"]); ?></label></span>
+                </li>
+                <li>
+                    <input type="radio" name="<?php echo $item["question_id"]; ?>" value="d" id="<?php echo $item["question_id"]; ?>d">
+                    <span><label class="cursor" for="<?php echo $item["question_id"]; ?>d"><?php echo htmlspecialchars($item["optionD"]); ?></label></span>
+                </li>
             </ol>
         <?php } ?></ol>
         <button type="button" class="btn-basic" name="abort">Abort Test</button>
