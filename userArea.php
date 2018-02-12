@@ -8,6 +8,8 @@ if (isset($_POST['signIn'])) {
 
 	$username = $_POST['username'];
 	//$password = $_POST['password'];
+} else {
+    $username = filter_input(INPUT_GET, 'username');
 }
 
 $getUser = get_user($username);
@@ -37,6 +39,7 @@ include 'view/header.php'; ?>
 	</form>
 	<form class="form-signin" action="userRegister.php" method="post">
 		<button type="submit" class="btn-basic" name="editProfile" >Edit Profile</button>
+        <input type="hidden" name="username" value="<?php echo $username?>">
 	</form>
 	<form class="form-signin" action="index.php" method="post">
 		<button type="submit" class="btn-basic" name="signOut" >Sign out</button>

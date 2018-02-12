@@ -70,7 +70,3 @@ document.addEventListener('submit', function (event) {
     }
 
 }, false);
-
-document.querySelector('#cancel').addEventListener('click', function (event) {
-    window.location.replace("http://localhost/orion/");
-});

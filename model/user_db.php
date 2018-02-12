@@ -33,6 +33,24 @@ function get_user($username) {
     }
 }
 
+function get_user_by_email($email) {
+    global $db;
+    $query = 'SELECT *
+              FROM user
+              WHERE email = :email';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':email', $email);
+        $statement->execute();
+        $result = $statement->fetch();
+        $statement->closeCursor();
+        return $result;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }
+}
+
 function add_user($flag_admin, $username, $password, $first_name, $last_name,
         $email, $phone, $address) {
     global $db;
