@@ -1,33 +1,38 @@
 <?php 
 session_start();
-$_SESSION['username'] = $_POST['username'];
 
 require_once('model/database.php');
 require_once('model/user_db.php');
 require_once('model/subject_db.php');
 
 if (isset($_POST['signIn'])) {
-
 	$username = $_POST['username'];
 	//$password = $_POST['password'];
-} else {
-    $username = filter_input(INPUT_GET, 'username');
 }
 
-$getUser = get_user($username);
-$getTypeUser = $getUser['flag_admin'];
-$getSubjects = get_subjects();
+
+
+if (!isset($_SESSION['username'])) {
+	$username = $_POST['username'];
+
+	$getUser = get_user($username);
+	$getTypeUser = $getUser['flag_admin'];
+	$getSubjects = get_subjects();
+
+	$_SESSION['username'] = $username;
+	$_SESSION['name'] = $getUser['first_name'];
+}
 
 include 'view/header.php'; ?>
 
 <section>
 
 	<div class="center">
-		<p>Welcome <?php echo $getUser['first_name']."!"; ?></p>
-	</div>
-
+		
 	<?php if($getTypeUser == 0) { ?>
 
+		<p>Welcome, <?php echo $_SESSION['name']."!"; ?></p>
+	</div>
 	<form class="form-signin" action="doAssessment.php" method="post">
 		<button type="submit" class="btn-basic" name="doAssessment" >Take the test</button>
 		<?php foreach($getSubjects as $subject) { ?>
@@ -49,6 +54,8 @@ include 'view/header.php'; ?>
 
 	<?php } else {?>
 
+		<p>Welcome to Administration Area, <?php echo $_SESSION['name']."!"; ?></p>
+	</div>
 	<form class="form-signin" action="editQnS.php" method="post">
 		<button type="submit" class="btn-basic" name="editSubjects" >Edit Subjects</button>
 	</form>
