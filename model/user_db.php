@@ -66,15 +66,16 @@ function add_user($flag_admin, $username, $password, $first_name, $last_name,
 
 function update_user($user_id, $flag_admin, $username, $password,
                         $first_name, $last_name, $email, $phone, $address) {
+
     global $db;
-    $query = 'UPDATE Products
+    $query = 'UPDATE user
               SET flag_admin = :flag_admin,
                   username = :username,
                   password = :password,
                   first_name = :first_name,
                   last_name = :last_name,
                   email = :email,
-                  phone = :phone
+                  phone = :phone,
                   address = :address
               WHERE user_id = :user_id';
     try {
@@ -110,5 +111,9 @@ function delete_user($user_id) {
         $error_message = $e->getMessage();
         display_db_error($error_message);
     }
+}
+
+function display_db_error($error_message) {
+    echo $error_message;
 }
 ?>
