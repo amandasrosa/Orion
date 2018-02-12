@@ -145,7 +145,7 @@ include 'view/header.php'; ?>
             <label for="inputConfirmPassword" class="label-user-resgistration label-right">Confirm Password:</label>
             <input type="password" name="inputConfirmPassword" class="input-user-resgistration" placeholder="Password"
                    required value="<?php echo $user['password'] ?>">
-            <div class="error-message hidden" id="error-for-inputConfirmPassword">The confirmation must be equal.</div>
+            <div class="error-message hidden" id="error-for-inputConfirmPassword">Password does not match the confirm password.</div>
 
             <label for="inputFirstName" class="label-user-resgistration label-right">First Name:</label>
             <input type="text" name="inputFirstName" class="input-user-resgistration" placeholder="First name"

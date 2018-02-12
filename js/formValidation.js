@@ -6,6 +6,9 @@ for (var i = 0; i < forms.length; i++) {
 var hasError = function (field) {
 
     if (field.disabled || field.type == 'file' || field.type == 'reset' || field.type == 'submit' || field.type == 'button') return false;
+
+    if (field.name == 'inputConfirmPassword' && field.value != document.querySelector('input[name="inputPassword"]').value) return true;
+
     return !field.validity.valid;
 };
 
