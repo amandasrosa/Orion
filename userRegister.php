@@ -122,7 +122,7 @@ function normalizeUser($user) {
 
 include 'view/header.php'; ?>
 
-    <section style="margin: 0 auto; width: 50%">
+    <section class="section-form">
         <form action="userRegister.php" method="post" class="form-user-registration validate">
             <?php if(isset($_POST['register']) || isset($_POST['registerUser'])) { ?>
                 <h1 class="center-text">User Registration:</h1>
@@ -168,7 +168,7 @@ include 'view/header.php'; ?>
             <div class="error-message hidden" id="error-for-inputPhone">Please inform a valid phone number.</div>
 
             <label for="inputAddress" class="label-user-resgistration label-right">Address</label>
-            <input type="tel" name="inputAddress" class="input-user-resgistration"ds placeholder="Address"
+            <input type="text" name="inputAddress" class="input-user-resgistration"ds placeholder="Address"
                    required value="<?php echo $user['address'] ?>">
             <div class="error-message hidden" id="error-for-inputAddress">Please inform your address.</div>
 
@@ -183,10 +183,10 @@ include 'view/header.php'; ?>
 
                 <?php if(isset($_POST['register']) || isset($_POST['registerUser'])) { ?>
                     <input class="btn-basic btn-user-registration" type="submit" value="Cancel" name="cancelRegister" id="cancel" onclick="event.target.form.classList.remove('validate')">
-                    <input class="btn-basic `btn-user-registration" type="submit" value="Register" name="registerUser">
+                    <input class="btn-basic btn-user-registration" type="submit" value="Register" name="registerUser">
                 <?php } else if (isset($_POST['editProfile'])) { ?>
                     <input class="btn-basic btn-user-registration" type="submit" value="Cancel" name="cancelEditProfile" id="cancel" onclick="event.target.form.classList.remove('validate')">
-                    <input class="btn-basic `btn-user-registration" type="submit" value="Save" name="saveEditedUser">
+                    <input class="btn-basic btn-user-registration" type="submit" value="Save" name="saveEditedUser">
                 <?php } ?>
             </section>
         </form>
