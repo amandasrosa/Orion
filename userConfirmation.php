@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $userFullName = filter_input(INPUT_GET, 'userFullName');
 
 include 'view/header.php'; ?>

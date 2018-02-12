@@ -23,9 +23,9 @@ foreach ($questions as $question) {
 }
 
 if ($count > 7 ) {
-    $result = "You have successfully passed the test. You are now certified in ".$subjectName.".";
+    $result = "Score ".$count."/10. You have successfully passed the test. You are now certified in ".$subjectName.".";
 } else {
-    $result = "Unfortunately you did not pass the test. Please try again later!";
+    $result = "Score ".$count."/10. Unfortunately you did not pass the test. Please try again later!";
 }
 //echo "<pre>";
 //print_r($_POST);

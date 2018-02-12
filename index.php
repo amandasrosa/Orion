@@ -1,4 +1,5 @@
 <?php
+    session_destroy();
 	require_once('model/database.php');
 	require_once('model/question_db.php');
 	require_once('model/result_db.php');

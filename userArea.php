@@ -1,4 +1,6 @@
 <?php 
+session_start();
+$_SESSION['username'] = $_POST['username'];
 
 require_once('model/database.php');
 require_once('model/user_db.php');
