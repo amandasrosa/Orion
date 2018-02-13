@@ -3,7 +3,7 @@
 function get_subjects() {
     global $db;
     $query = 'SELECT * FROM subject 
-              
+              WHERE active = 1
               ORDER BY subject_id';
     try {
         $statement = $db->prepare($query);
@@ -35,16 +35,15 @@ function get_subject($subject_id) {
     }
 }
 
-function add_subject($subject_id, $description, $active) {
+function add_subject($subject_id, $description) {
     global $db;
     $query = 'INSERT INTO subject
-                 (description, active)
+                 (description)
               VALUES
-                 (:description, :active)';
+                 (:description)';
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':description', $description);
-        $statement->bindValue(':active', $active);
         $statement->execute();
         $statement->closeCursor();
 
@@ -60,13 +59,11 @@ function add_subject($subject_id, $description, $active) {
 function update_subject($subject_id, $description, $active) {
     global $db;
     $query = 'UPDATE subject
-              SET description = :description,
-              SET active = :active,
+              SET description = :description
               WHERE subject_id = :subject_id';
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':description', $description);
-        $statement->bindValue(':active', $active);
         $statement->bindValue(':subject_id', $subject_id);
         $row_count = $statement->execute();
         $statement->closeCursor();
@@ -79,7 +76,9 @@ function update_subject($subject_id, $description, $active) {
 
 function delete_subject($subject_id) {
     global $db;
-    $query = 'DELETE FROM subject WHERE subject_id = :subject_id';
+    $query = 'UPDATE subject
+              SET active = 0
+              WHERE subject_id = :subject_id';
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':subject_id', $subject_id);
@@ -91,4 +90,19 @@ function delete_subject($subject_id) {
         display_db_error($error_message);
     }
 }
+
+/*function delete_subject($subject_id) {
+    global $db;
+    $query = 'DELETE FROM subject WHERE subject_id = :subject_id';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':subject_id', $subject_id);
+        $row_count = $statement->execute();
+        $statement->closeCursor();
+        return $row_count;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }
+}*/
 ?>

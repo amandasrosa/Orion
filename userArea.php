@@ -19,6 +19,7 @@ if (!isset($_SESSION['username'])) {
 	$_SESSION['username'] = $_POST['username'];
 	$_SESSION['name'] = $getUser['first_name'];
 	$_SESSION['userId'] = $getUser['user_id'];
+	$_SESSION['flag_admin'] = $getUser['flag_admin'];
 }
 
 include 'view/header.php'; ?>
@@ -27,7 +28,7 @@ include 'view/header.php'; ?>
 
 	<div class="center">
 		
-	<?php if($getTypeUser == 0) { ?>
+	<?php if($_SESSION['flag_admin'] == 0) { ?>
 
 		<p>Welcome, <?php echo $_SESSION['name']."!"; ?></p>
 	</div>
