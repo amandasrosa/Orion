@@ -50,8 +50,10 @@ include 'view/header.php'; ?>
                 </li>
             </ol>
         <?php } ?></ol>
-        <button type="button" class="btn-basic" name="abort">Abort Test</button>
         <button type="submit" class="btn-basic" name="">Submit Answers</button>
+    </form>
+    <form class="form-questions" action="userArea.php" method="post">
+        <button type="submit" class="btn-basic" name="abort">Abort Test</button>
     </form>
 </section>
 
