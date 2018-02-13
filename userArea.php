@@ -32,16 +32,12 @@ include 'view/header.php'; ?>
 	</div>
 	<form class="form-signin" action="doAssessment.php" method="post">
 		<div class="drop">
-		<button type="button" class="btn-basic dropBtn" name="doAssessment" >Take the test <i class="arrowDown"></i></button>
-		<div class="dropDownGroup">
-		<?php foreach($getSubjects as $subject) { ?>
-			<!--<label class="cursor" for="sub<?php echo $subject['subject_id']; ?>">
-				<input type="radio" id="sub<?php echo $subject['subject_id']; ?>" name="subjectRadio" value="<?php echo $subject['subject_id']; ?>" required>
-				
-			</label>-->
-			<button type="submit" class="btn-basic" name="<?php echo $subject['subject_id']; ?>" ><?php echo $subject['description']; ?></button>
-		<?php } ?>
-		</div>
+			<button type="button" class="btn-basic dropBtn" name="doAssessment" >Take the test <i class="arrowDown"></i></button>
+			<div class="dropDownGroup">
+			<?php foreach($getSubjects as $subject) { ?>
+				<button type="submit" class="btn-basic" name="<?php echo $subject['subject_id']; ?>" ><?php echo $subject['description']; ?></button>
+			<?php } ?>
+			</div>
 		</div>
 	</form>
 	<form class="form-signin" action="userRegister.php" method="post">
@@ -60,15 +56,14 @@ include 'view/header.php'; ?>
 		<button type="submit" class="btn-basic" name="editSubjects" >Edit Subjects</button>
 	</form>
 	<form class="form-signin" action="editQnS.php" method="post">
-		<button type="submit" class="btn-basic" name="editQuestions" >Edit Questions</button>
-		<?php foreach($getSubjects as $subject) { ?>
-		<div class="">
-			<label class="cursor" for="sub<?php echo $subject['subject_id']; ?>">
-				<input type="radio" id="sub<?php echo $subject['subject_id']; ?>" name="subjectRadio" value="<?php echo $subject['subject_id']; ?>" required>
-				<?php echo $subject['description']; ?>
-			</label>
+		<div class="drop">
+		<button type="submit" class="btn-basic dropBtn" name="editQuestions" >Edit Questions</button>
+			<div class="dropDownGroup">
+			<?php foreach($getSubjects as $subject) { ?>
+				<button type="submit" class="btn-basic" name="<?php echo $subject['subject_id']; ?>" ><?php echo $subject['description']; ?></button>
+			<?php } ?>
+			</div>
 		</div>
-		<?php } ?>
 	</form>
 	<form class="form-signin" action="report.php" method="post">
 		<button type="submit" class="btn-basic" name="report" >Reports</button>
