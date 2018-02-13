@@ -2,7 +2,9 @@
 
 function get_subjects() {
     global $db;
-    $query = 'SELECT * FROM subject ORDER BY subject_id';
+    $query = 'SELECT * FROM subject 
+              
+              ORDER BY subject_id';
     try {
         $statement = $db->prepare($query);
         $statement->execute();

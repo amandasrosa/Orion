@@ -6,6 +6,8 @@ require_once('model/subject_db.php');
 require_once('model/result_db.php');
 
 include 'view/header.php'; 
+
+$userId = $_SESSION['userId'];
 $subjectId = $_SESSION['subjectId'];
 $subjectName = get_subject($subjectId);
 $questions = get_questions_by_subject($subjectId);
@@ -21,6 +23,8 @@ foreach ($questions as $question) {
     }
 
 }
+
+$lastInsertedId = add_result($userId, $subjectId, $count);
 
 if ($count > 7 ) {
     $result = "Score ".$count."/10. You have successfully passed the test. You are now certified in ".$subjectName.".";

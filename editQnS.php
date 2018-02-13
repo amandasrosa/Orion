@@ -40,9 +40,8 @@ if (!isset($subjectId)) { $subjectId = "1"; }
 
 
 
-<?php if (isset($_POST['editQuestions'])) { 
-
-	$subjectId = $_POST['subjectId'];
+<?php if (isset($_POST['questSubjectId'])) { 
+	$subjectId = $_POST['questSubjectId'];
 	$questions = get_questions_by_subject($subjectId);
 ?> 
 

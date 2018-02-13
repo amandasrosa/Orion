@@ -18,6 +18,7 @@ $getTypeUser = $getUser['flag_admin'];
 if (!isset($_SESSION['username'])) {
 	$_SESSION['username'] = $_POST['username'];
 	$_SESSION['name'] = $getUser['first_name'];
+	$_SESSION['userId'] = $getUser['user_id'];
 }
 
 include 'view/header.php'; ?>
@@ -35,7 +36,7 @@ include 'view/header.php'; ?>
 			<button type="button" class="btn-basic dropBtn" name="doAssessment" >Take the test <i class="arrowDown"></i></button>
 			<div class="dropDownGroup">
 			<?php foreach($getSubjects as $subject) { ?>
-				<button type="submit" class="btn-basic" name="<?php echo $subject['subject_id']; ?>" ><?php echo $subject['description']; ?></button>
+				<button type="submit" class="btn-basic" name="subjectId" value="<?php echo $subject['subject_id']; ?>" ><?php echo $subject['description']; ?></button>
 			<?php } ?>
 			</div>
 		</div>
@@ -57,10 +58,10 @@ include 'view/header.php'; ?>
 	</form>
 	<form class="form-signin" action="editQnS.php" method="post">
 		<div class="drop">
-		<button type="submit" class="btn-basic dropBtn" name="editQuestions" >Edit Questions</button>
+		<button type="button" class="btn-basic dropBtn" name="" >Edit Questions</button>
 			<div class="dropDownGroup">
 			<?php foreach($getSubjects as $subject) { ?>
-				<button type="submit" class="btn-basic" name="<?php echo $subject['subject_id']; ?>" ><?php echo $subject['description']; ?></button>
+				<button type="submit" class="btn-basic" name="questSubjectId" value="<?php echo $subject['subject_id']; ?>" ><?php echo $subject['description']; ?></button>
 			<?php } ?>
 			</div>
 		</div>
