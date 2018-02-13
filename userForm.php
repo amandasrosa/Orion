@@ -123,7 +123,7 @@ function normalizeUser($user) {
 include 'view/header.php'; ?>
 
     <section class="section-form">
-        <form action="userRegister.php" method="post" class="form-user-registration validate">
+        <form action="userForm.php" method="post" class="form-user-registration validate">
             <?php if(isset($_POST['register']) || isset($_POST['registerUser'])) { ?>
                 <h1 class="center-text">User Registration:</h1>
             <?php } else if (isset($_POST['editProfile'])) { ?>

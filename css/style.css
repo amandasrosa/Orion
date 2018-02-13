@@ -1,8 +1,6 @@
 /* Customized styles */
 
 html {
-  position: relative;
-  min-height: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
@@ -14,26 +12,12 @@ body {
   background: #D0D0D0;
   height: 100%;
   padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-.btn-basic {
-  display: inline-block;
-  text-align: center;
-  vertical-align: middle;
-  border: 1px solid transparent;
-  padding: 0.3em 0.7em;
-  font-size: 1em;
-  line-height: 1.5;
-  border-radius: 0.3em;
-  color: #B8B8B8;
-  background-color: #000080;
-  cursor: pointer;
-  width: 40%;
-  margin: 0.6em;
-}
-
-.btn-basic:hover {
-  background-color: #3030CD;
+main {
+    flex: 1 0 auto;
 }
 
 header {
@@ -50,17 +34,35 @@ header h1 {
   margin: 0;
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 60px; /* Set the fixed height of the footer here */
+footer {
   line-height: 60px; /* Vertically center the text there */
   text-align: center;
   font-size: 0.7em;
   background-image: linear-gradient(90deg, #000080, #6A5ACD);
   color: #B8B8B8;
+  flex-shrink: 0;
 }
+
+.btn-basic {
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    padding: 0.3em 0.7em;
+    font-size: 1em;
+    line-height: 1.5;
+    border-radius: 0.3em;
+    color: #B8B8B8;
+    background-color: #000080;
+    cursor: pointer;
+    width: 40%;
+    margin: 0.6em;
+}
+
+.btn-basic:hover {
+    background-color: #3030CD;
+}
+
 
 .form-signin {
     width: 100%;
@@ -74,28 +76,6 @@ header h1 {
     border: #B8B8B8 1px solid;
     text-align: center;
     padding-bottom: 1em;
-}
-
-.input-user-login {
-    background: #fff;
-    border: 1px solid #9c9c9c;
-    padding: 0.5em;
-    margin-bottom: 0.5rem;
-    box-sizing: border-box;
-    font-size: 1em;
-    line-height: 2em;
-    width: 90%;
-    border-radius: 4px;
-    -webkit-transition: all 0.30s ease-in-out;
-    -moz-transition: all 0.30s ease-in-out;
-    -ms-transition: all 0.30s ease-in-out;
-    -o-transition: all 0.30s ease-in-out;
-    outline: none;
-}
-
-.input-user-login:focus {
-    box-shadow: 0 0 5px rgba(0, 0, 128, 1);
-    border: 1px solid rgba(0, 0, 128, 1);
 }
 
 .btn-login {

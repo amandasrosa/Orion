@@ -40,7 +40,7 @@ include 'view/header.php'; ?>
 			</div>
 		</div>
 	</form>
-	<form class="form-signin" action="userRegister.php" method="post">
+	<form class="form-signin" action="userForm.php" method="post">
 		<button type="submit" class="btn-basic" name="editProfile" >Edit Profile</button>
         <input type="hidden" name="username" value="<?php echo $username?>">
 	</form>

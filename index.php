@@ -15,15 +15,12 @@
         <form action="userArea.php" method="post">
             <h1>Welcome!</h1>
 
-    <!--        <label for="inputUsername" class="sr-only">Username: </label>-->
-            <input type="text" id="inputUsername" name="username" class="input-user-login" placeholder="Username" required autofocus>
-
-    <!--        <label for="inputPassword" class="sr-only">Password: </label>-->
-            <input type="password" id="inputPassword" name="password" class="input-user-login" placeholder="Password" required>
+            <input type="text" id="inputUsername" name="username" class="input-user-login input-user-resgistration" placeholder="Username" required autofocus>
+            <input type="password" id="inputPassword" name="password" class="input-user-login input-user-resgistration" placeholder="Password" required>
 
             <button class="btn-basic btn-login" type="submit" name="signIn">Sign in</button>
         </form>
-        <form action="userRegister.php" method="post">
+        <form action="userForm.php" method="post">
             <button class="btn-basic btn-login" type="submit" name="register">Register</button>
         </form>
 
