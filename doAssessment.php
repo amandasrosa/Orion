@@ -50,9 +50,11 @@ include 'view/header.php'; ?>
                 </li>
             </ol>
         <?php } ?></ol>
-        <button type="submit" class="btn-basic" name="">Submit Answers</button>
+        <div class="center">
+            <button type="submit" class="btn-basic" name="">Submit Answers</button>
+        </div>
     </form>
-    <form class="form-questions" action="userArea.php" method="post">
+    <form class="form-questions center" action="userArea.php" method="post">
         <button type="submit" class="btn-basic" name="abort">Abort Test</button>
     </form>
 </section>
