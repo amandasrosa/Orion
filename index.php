@@ -6,10 +6,10 @@
 	require_once('model/result_db.php');
 	require_once('model/subject_db.php');
 	require_once('model/user_db.php');
-	include 'view/header.php'; 
+	include 'view/header.php';
 ?>
 
-<div class="center-form-horizontally">
+
     <section class="form-signin form-login">
 
         <form action="userArea.php" method="post">
@@ -25,6 +25,6 @@
         </form>
 
     </section>
-</div>
+
 
 <?php include 'view/footer.php'; ?>

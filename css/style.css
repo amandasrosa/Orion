@@ -10,10 +10,10 @@ body {
   font-family: Verdana,Geneva,sans-serif;
   margin: 0;
   background: #D0D0D0;
-  height: 100%;
   padding: 0;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 main {
@@ -23,7 +23,7 @@ main {
 header {
   text-align: center;
   background-image: linear-gradient(90deg, #000080, #6A5ACD);
-  height: 8em;
+  padding: 3em 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,7 +36,7 @@ header h1 {
 }
 
 footer {
-  line-height: 60px; /* Vertically center the text there */
+  padding: 2em 0;
   text-align: center;
   font-size: 0.7em;
   background-image: linear-gradient(90deg, #000080, #6A5ACD);
@@ -77,17 +77,12 @@ footer {
     border: #B8B8B8 1px solid;
     text-align: center;
     padding-bottom: 1em;
+    margin-top: 7em;
 }
 
 .btn-login {
     width: 90%;
     line-height: 2em;
-}
-
-.center-form-horizontally {
-    display: flex;
-    align-items: center;
-    height: calc(100vh - (60px + 8em));
 }
 
 .form-questions {
