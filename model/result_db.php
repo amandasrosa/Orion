@@ -69,7 +69,7 @@ function get_result($result_id) {
     }
 }
 
-function add_result($result_id, $user_id, $subject_id, $grade, $testDate) {
+function add_result($user_id, $subject_id, $grade) {
     global $db;
     $query = 'INSERT INTO result
                  (user_id, subject_id, grade, testDate)
@@ -79,7 +79,6 @@ function add_result($result_id, $user_id, $subject_id, $grade, $testDate) {
         $statement = $db->prepare($query);
         $statement->bindValue(':user_id', $user_id);
         $statement->bindValue(':subject_id', $subject_id);
-        $statement->bindValue(':testDate', $testDate);
         $statement->bindValue(':grade', $grade);
         $statement->execute();
         $statement->closeCursor();

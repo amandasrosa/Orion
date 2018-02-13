@@ -40,13 +40,12 @@ if (!isset($subjectId)) { $subjectId = "1"; }
 
 
 
-<?php if (isset($_POST['editQuestions'])) { 
-
-	$subjectId = $_POST['subjectRadio'];
+<?php if (isset($_POST['questSubjectId'])) { 
+	$subjectId = $_POST['questSubjectId'];
 	$questions = get_questions_by_subject($subjectId);
 ?> 
 
-	<table>
+	<table class="table-edit" id="tableQuestions">
         <thead>
             <tr>
                 <th>Id</th>
@@ -67,10 +66,14 @@ if (!isset($subjectId)) { $subjectId = "1"; }
                 <td></td>
                 <td class="table-cell-options" id="<?php echo $question['question_id'];?>" style="display: none;">
                     <ol type="a">
-                        <li><input type="text" class="input-user-resgistration editOptions fontSmaller" name="<?php echo $question['question_id'];?>" value="<?php echo htmlspecialchars($question['optionA']); ?>"/></li>
-                        <li><input type="text" class="input-user-resgistration editOptions fontSmaller" name="<?php echo $question['question_id'];?>" value="<?php echo htmlspecialchars($question['optionB']); ?>"/></li>
-                        <li><input type="text" class="input-user-resgistration editOptions fontSmaller" name="<?php echo $question['question_id'];?>" value="<?php echo htmlspecialchars($question['optionC']); ?>"/></li>
-                        <li><input type="text" class="input-user-resgistration editOptions fontSmaller" name="<?php echo $question['question_id'];?>" value="<?php echo htmlspecialchars($question['optionD']); ?>"/></li>
+						<li><input type="radio" name="<?php echo $question["question_id"]; ?>" value="a" id="<?php echo $question["question_id"]; ?>a" <?php echo $question["answer"] == 'a' ? 'checked' : ''; ?>/>
+						<input type="text" class="input-user-resgistration editOptions fontSmaller" name="<?php echo $question['question_id'];?>" value="<?php echo htmlspecialchars($question['optionA']); ?>"/></li>
+                        <li><input type="radio" name="<?php echo $question["question_id"]; ?>" value="b" id="<?php echo $question["question_id"]; ?>b" <?php echo $question["answer"] == 'b' ? 'checked' : ''; ?>>
+						<input type="text" class="input-user-resgistration editOptions fontSmaller" name="<?php echo $question['question_id'];?>" value="<?php echo htmlspecialchars($question['optionB']); ?>"/></li>
+                        <li><input type="radio" name="<?php echo $question["question_id"]; ?>" value="c" id="<?php echo $question["question_id"]; ?>c" <?php echo $question["answer"] == 'c' ? 'checked' : ''; ?>>
+						<input type="text" class="input-user-resgistration editOptions fontSmaller" name="<?php echo $question['question_id'];?>" value="<?php echo htmlspecialchars($question['optionC']); ?>"/></li>
+                        <li><input type="radio" name="<?php echo $question["question_id"]; ?>" value="d" id="<?php echo $question["question_id"]; ?>d" <?php echo $question["answer"] == 'd' ? 'checked' : ''; ?>>
+						<input type="text" class="input-user-resgistration editOptions fontSmaller" name="<?php echo $question['question_id'];?>" value="<?php echo htmlspecialchars($question['optionD']); ?>"/></li>
                     </ol>
                 </td>
                 <td></td>
@@ -80,7 +83,7 @@ if (!isset($subjectId)) { $subjectId = "1"; }
         </tbody>
     </table>
     <div class="center">
-        <button type="submit" class="btn-basic center" name="add" >Add Question</button>
+        <button type="submit" class="btn-basic center" name="add" onclick="return false;">Add Question</button>
     </div>
 
 <?php } ?>

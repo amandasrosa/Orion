@@ -3,7 +3,7 @@ session_start();
 require_once('model/database.php');
 require_once('model/question_db.php');
 
-$subjectId = filter_input(INPUT_POST, "subjectRadio");
+$subjectId = filter_input(INPUT_POST, "subjectId");
 
 $_SESSION['subjectId'] = $subjectId;
 
