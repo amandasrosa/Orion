@@ -35,15 +35,15 @@ if (!isset($subjectId)) { $subjectId = "1"; }
 			
 			var collapseButton = document.createElement("INPUT");
 			collapseButton.setAttribute("type", "image");
-			collapseButton.src = "images/arrow-down-icon.png";
+			collapseButton.src = "images/arrow-up-icon.png";
 			collapseButton.alt = "Collapse";
 			collapseButton.height = "45";
 			collapseButton.width = "45";
 			collapseButton.classList.add("alignBottomImg", "cursor");
 			collapseButton.value = "e" + id;
-			collapseButton.addEventListener("click", function() {
-				toggleOptions(this);
-				return false;
+			collapseButton.addEventListener("click", function(ev) {
+				ev.preventDefault();
+				toggleOptions(ev.target);
 			});
 			collapseCell.appendChild(collapseButton);
 			
@@ -55,8 +55,8 @@ if (!isset($subjectId)) { $subjectId = "1"; }
 			deleteButton.width = "45";
 			deleteButton.classList.add("alignBottomImg", "cursor");
 			deleteButton.value = "e" + id;
-			deleteButton.addEventListener("click", function() {
-				return false;
+			deleteButton.addEventListener("click", function(ev) {
+				ev.preventDefault();
 			});
 			deleteCell.appendChild(deleteButton);
 			
@@ -67,6 +67,7 @@ if (!isset($subjectId)) { $subjectId = "1"; }
 			row2.insertCell(3);
 			
 			optionsCell.id = "e" + id;
+			optionsCell.style.display = "block";
 			optionsCell.classList.add("table-cell-options");
 			var optionList = document.createElement("OL");
 			optionList.type = "a";
