@@ -2,10 +2,15 @@ table, td, th {
     border: 0px solid black;
 }
 
-table {
+.table-edit {
     border-collapse: collapse;
     width: 95%;
-    margin: auto; 
+    margin: 0 !important;
+}
+
+.table-edit tr td:first-child, .table-edit th td:first-child {
+    width: 2.5em;
+    text-align: center;
 }
 
 .table-cell-question:hover {
@@ -22,6 +27,15 @@ table {
     width: 100%;
 }
 
+
 .table-cell-options ol input {
     margin: 0;
+}
+
+.table-cell-options input[type="radio"] {
+    vertical-align: middle;
+}
+
+.table-cell-options input[type="text"] {
+    width: 95% !important;
 }
