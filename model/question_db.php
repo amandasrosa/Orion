@@ -2,7 +2,8 @@
 function get_questions_by_subject($subject_id) {
     global $db;
     $query = 'SELECT * FROM question
-              WHERE subject_id = :subject_id
+              WHERE subject_id = :subject_id 
+              AND active = 1
               ORDER BY question_id';
     try {
         $statement = $db->prepare($query);
@@ -51,14 +52,14 @@ function get_question($question_id) {
 }
 
 function add_question($subject_id, $description, $optionA, $optionB,
-        $optionC, $optionD, $answer, $active) {
+        $optionC, $optionD, $answer) {
     global $db;
     $query = 'INSERT INTO question
                  (subject_id, description, optionA, optionB,
-                  optionC, optionD, answer, active)
+                  optionC, optionD, answer)
               VALUES
                  (:subject_id, :description, :optionA, :optionB, :optionC,
-                  :optionD, :answer, :active)';
+                  :optionD, :answer)';
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':subject_id', $subject_id);
@@ -68,7 +69,6 @@ function add_question($subject_id, $description, $optionA, $optionB,
         $statement->bindValue(':optionC', $optionC);
         $statement->bindValue(':optionD', $optionD);
         $statement->bindValue(':answer', $answer);
-        $statement->bindValue(':active', $active);
         $statement->execute();
         $statement->closeCursor();
 
@@ -82,7 +82,7 @@ function add_question($subject_id, $description, $optionA, $optionB,
 }
 
 function update_question($question_id, $subject_id, $description,
-                        $optionA, $optionB, $optionC, $optionD, $answer, $active) {
+                        $optionA, $optionB, $optionC, $optionD, $answer) {
     global $db;
     $query = 'UPDATE question
               SET subject_id = :subject_id,
@@ -91,8 +91,7 @@ function update_question($question_id, $subject_id, $description,
                   optionB = :optionB,
                   optionC = :optionC,
                   optionD = :optionD,
-                  answer = :answer,
-                  active = :active,
+                  answer = :answer
               WHERE question_id = :question_id';
     try {
         $statement = $db->prepare($query);
@@ -103,7 +102,6 @@ function update_question($question_id, $subject_id, $description,
         $statement->bindValue(':optionC', $optionC);
         $statement->bindValue(':optionD', $optionD);
         $statement->bindValue(':answer', $answer);
-        $statement->bindValue(':active', $active);
         $statement->bindValue(':question_id', $question_id);
         $row_count = $statement->execute();
         $statement->closeCursor();
@@ -116,7 +114,9 @@ function update_question($question_id, $subject_id, $description,
 
 function delete_question($question_id) {
     global $db;
-    $query = 'DELETE FROM question WHERE question_id = :question_id';
+    $query = 'UPDATE question
+              SET active = 0
+              WHERE question_id = :question_id';
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':question_id', $question_id);
@@ -128,4 +128,19 @@ function delete_question($question_id) {
         display_db_error($error_message);
     }
 }
+
+/*function delete_question($question_id) {
+    global $db;
+    $query = 'DELETE FROM question WHERE question_id = :question_id';
+    try {
+        $statement = $db->prepare($query);
+        $statement->bindValue(':question_id', $question_id);
+        $row_count = $statement->execute();
+        $statement->closeCursor();
+        return $row_count;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }
+}*/
 ?>
