@@ -9,23 +9,25 @@
 	include 'view/header.php'; 
 ?>
 
-<section>
+<div class="center-form-horizontally">
+    <section class="form-signin form-login">
 
-    <form class="form-signin" action="userArea.php" method="post">
-        <h1>Welcome!</h1>
-    
-        <label for="inputUsername" class="sr-only">Username: </label>
-        <input type="text" id="inputUsername" name="username" class="input-user-resgistration" placeholder="Username" required autofocus>
-    
-        <label for="inputPassword" class="sr-only">Password: </label>
-        <input type="password" id="inputPassword" name="password" class="input-user-resgistration" placeholder="Password" required>
-        <br>
-        <button class="btn-basic" type="submit" name="signIn">Sign in</button>
-    </form>
-    <form class="form-signin" action="userRegister.php" method="post">
-        <button class="btn-basic" type="submit" name="register">Register</button>
-    </form>
+        <form action="userArea.php" method="post">
+            <h1>Welcome!</h1>
 
-</section>
+    <!--        <label for="inputUsername" class="sr-only">Username: </label>-->
+            <input type="text" id="inputUsername" name="username" class="input-user-login" placeholder="Username" required autofocus>
+
+    <!--        <label for="inputPassword" class="sr-only">Password: </label>-->
+            <input type="password" id="inputPassword" name="password" class="input-user-login" placeholder="Password" required>
+
+            <button class="btn-basic btn-login" type="submit" name="signIn">Sign in</button>
+        </form>
+        <form action="userRegister.php" method="post">
+            <button class="btn-basic btn-login" type="submit" name="register">Register</button>
+        </form>
+
+    </section>
+</div>
 
 <?php include 'view/footer.php'; ?>
