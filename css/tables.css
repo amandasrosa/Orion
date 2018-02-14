@@ -39,3 +39,12 @@ table, td, th {
 .table-cell-options input[type="text"] {
     width: 95% !important;
 }
+
+.table-report tr td {
+    padding-right: 2em;
+}
+
+.table-report {
+    padding: 2em;
+    border-collapse: collapse;
+}

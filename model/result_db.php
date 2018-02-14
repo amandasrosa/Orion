@@ -51,6 +51,27 @@ function get_results() {
     }
 }
 
+function get_results_for_report() {
+    global $db;
+    $query = 'SELECT u.first_name, u.last_name, s.description, r.subject_id, r.grade, r.testDate
+                FROM result r
+                INNER JOIN user u
+                ON r.user_id = u.user_id
+                INNER JOIN subject s
+                ON r.subject_id = s.subject_id
+            ORDER BY r.grade DESC';
+    try {
+        $statement = $db->prepare($query);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        $statement->closeCursor();
+        return $result;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }
+}
+
 function get_result($result_id) {
     global $db;
     $query = 'SELECT *

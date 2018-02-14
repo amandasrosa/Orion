@@ -96,6 +96,10 @@ footer {
   text-align: center;
 }
 
+.center-margin {
+  margin: 0 auto;
+}
+
 .center-section {
     margin: 0 auto;
     width: 50%;
@@ -161,4 +165,12 @@ footer {
 .drop:hover .dropDownGroup  {
     display: block;
     background: #D0D0D0;
+}
+
+.option-filter {
+    width: 35% !important;
+}
+
+.btn-filter {
+    width: 15% !important;
 }

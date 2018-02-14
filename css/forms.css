@@ -136,3 +136,8 @@ input[type=text]:disabled {
         width: 80%;
     }
 }
+
+.label-report {
+    padding: 0.5em 1.5em;
+    box-sizing: border-box;
+}

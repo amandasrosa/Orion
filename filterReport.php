@@ -4,7 +4,7 @@ require_once('model/database.php');
 require_once('model/subject_db.php');
 require_once('model/result_db.php');
 
-$subjects = get_subjects();
+$getSubjects = get_subjects();
 include 'view/header.php'; ?>
 
 <section>
@@ -12,6 +12,11 @@ include 'view/header.php'; ?>
 	<form class="" action="filterReport.php" method="post">
 		<label class="sr-only">Test: </label>
         <input type="text" name="subject" class="">
+        <select>
+        	<?php foreach($getSubjects as $subject) { ?>
+        		<option value="<?php echo $subject['subject_id']; ?>"><?php echo $subject['description']; ?></option>
+        	<?php } ?>
+        </select>
         <label class="sr-only">Date: </label>
         <input type="text" name="username" class="">
 		<button type="submit" class="btn-basic" name="filterReport" >Ok</button>
