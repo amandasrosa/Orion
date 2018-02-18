@@ -9,6 +9,17 @@
     padding: 0 2.5em 1em 1em;
 }
 
+.form-upsert-question {
+    background-color: #f3f2f2;
+    border: 1px solid #c1c1c1;
+    margin-top: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    padding: 0 2.5em 1em 1em;
+}
+
 .section-form {
     margin: 0 auto;
     width: 50%;
@@ -36,7 +47,14 @@
 }
 
 .label-user-resgistration {
-    text-align: right;
+     text-align: right;
+     display: block;
+     padding: 0.5em 1.5em 0.5em 0;
+     box-sizing: border-box;
+ }
+
+.label-user-resgistration-left {
+    text-align: left;
     display: block;
     padding: 0.5em 1.5em 0.5em 0;
     box-sizing: border-box;

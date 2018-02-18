@@ -54,10 +54,10 @@ include 'view/header.php'; ?>
 
 		<p>Welcome to Administration Area, <?php echo $_SESSION['name']."!"; ?></p>
 	</div>
-	<form class="form-signin" action="editQnS.php" method="post">
+	<form class="form-signin" action="editQnS.php" method="get">
 		<button type="submit" class="btn-basic" name="editSubjects" >Edit Subjects</button>
 	</form>
-	<form class="form-signin" action="editQnS.php" method="post">
+	<form class="form-signin" action="editQnS.php" method="get">
 		<div class="drop">
 		<button type="button" class="btn-basic dropBtn" name="" >Edit Questions</button>
 			<div class="dropDownGroup">

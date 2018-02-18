@@ -130,11 +130,68 @@ if (!isset($subjectId)) { $subjectId = "1"; }
 			optionList.appendChild(optionD);
 			optionsCell.appendChild(optionList);
 		}
+
+        function editQuestion(event, questionId){
+            event.preventDefault();
+            var url = 'upsertQuestion.php';
+            var editForm = document.createElement('form');
+            editForm.setAttribute('action', url);
+            editForm.setAttribute('method', 'get');
+            editForm.setAttribute('hidden', 'true');
+
+            var myInput = document.createElement('input');
+            myInput.setAttribute('type', 'text');
+            myInput.setAttribute('name', 'questionId');
+            myInput.setAttribute('value', questionId);
+
+            editForm.appendChild(myInput);
+            document.body.appendChild(editForm);
+
+            editForm.submit();
+        };
+
+        function newQuestion(event, subjectId){
+            event.preventDefault();
+            var url = 'upsertQuestion.php';
+            var editForm = document.createElement('form');
+            editForm.setAttribute('action', url);
+            editForm.setAttribute('method', 'get');
+            editForm.setAttribute('hidden', 'true');
+
+            var myInput = document.createElement('input');
+            myInput.setAttribute('type', 'text');
+            myInput.setAttribute('name', 'subjectId');
+            myInput.setAttribute('value', subjectId);
+
+            editForm.appendChild(myInput);
+            document.body.appendChild(editForm);
+
+            editForm.submit();
+        };
+
+        function deleteQuestion(event, questionId){
+            event.preventDefault();
+            var url = 'deleteQuestion.php';
+            var editForm = document.createElement('form');
+            editForm.setAttribute('action', url);
+            editForm.setAttribute('method', 'post');
+            editForm.setAttribute('hidden', 'true');
+
+            var myInput = document.createElement('input');
+            myInput.setAttribute('type', 'text');
+            myInput.setAttribute('name', 'questionIdToDelete');
+            myInput.setAttribute('value', questionId);
+
+            editForm.appendChild(myInput);
+            document.body.appendChild(editForm);
+
+            editForm.submit();
+        };
     </script>
 <section>
 
-<form class="form-editQS" action="editQnS.php" method="post">
-<?php if (isset($_POST['editSubjects'])) { 
+<form class="form-editQS" action="saveQnS.php" method="post">
+<?php if (isset($_GET['editSubjects'])) {
 
 	$subjects = get_subjects();
 
@@ -152,8 +209,8 @@ if (!isset($subjectId)) { $subjectId = "1"; }
 
 
 
-<?php if (isset($_POST['questSubjectId'])) { 
-	$subjectId = $_POST['questSubjectId'];
+<?php if (isset($_GET['questSubjectId'])) {
+	$subjectId = $_GET['questSubjectId'];
 	$questions = get_questions_by_subject($subjectId);
 ?> 
 
@@ -172,7 +229,8 @@ if (!isset($subjectId)) { $subjectId = "1"; }
                 <td><?php echo htmlspecialchars($question['question_id']);?></td>
                 <td class="table-cell-question" contenteditable="true"><?php echo htmlspecialchars($question['description']);?></td>
                 <td><input type="image" src="images/arrow-down-icon.png" alt="Collapse" height="45" width="45" class="alignBottomImg cursor" value="<?php echo $question['question_id'];?>" onclick="toggleOptions(this);return false;"/></td>
-                <td><input type="image" src="images/delete-icon.png" alt="Delete" height="45" width="45" class="alignBottomImg cursor" onclick="return false;"/></td>
+                <td><input type="image" src="images/delete-icon.png" alt="Delete" height="45" width="45" class="alignBottomImg cursor" onclick="deleteQuestion(event, <?php echo $question['question_id'];?>)"/></td>
+                <td><input type="image" src="images/edit-icon.png" alt="Edit" height="30" width="30" class="alignBottomImg cursor" onclick="editQuestion(event, <?php echo $question['question_id'];?>)"/></td>
             </tr>
             <tr >
                 <td></td>
@@ -195,12 +253,14 @@ if (!isset($subjectId)) { $subjectId = "1"; }
         </tbody>
     </table>
     <div class="center">
-        <button type="submit" class="btn-basic center" name="add" onclick="addQuestion();return false;">Add Question</button>
+        <button type="submit" class="btn-basic center" name="add" onclick="newQuestion(event, <?php echo $subjectId ?>)">Add Question</button>
     </div>
 
 <?php } ?>
 <div class="center">
-	<button type="submit" class="btn-basic" name="save" >Save</button>
+
+    <button type="submit" class="btn-basic" name="save" >Save</button>
+
 </div>
 </form>
     <form class="form-editQS center " action="userArea.php" method="post">

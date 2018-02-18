@@ -56,7 +56,6 @@ if (isset($_POST['registerUser'])) {
     die();
 
 } else if (isset($_POST['cancelRegister'])) {
-    print_r($_POST);
     header("Location: http://localhost/orion");
     die();
 }

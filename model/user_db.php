@@ -130,8 +130,4 @@ function delete_user($user_id) {
         display_db_error($error_message);
     }
 }
-
-function display_db_error($error_message) {
-    echo $error_message;
-}
 ?>

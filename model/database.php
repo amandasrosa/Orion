@@ -12,4 +12,7 @@ try {
     exit;
 }
 
+function display_db_error($error_message) {
+    echo $error_message;
+}
 ?>
