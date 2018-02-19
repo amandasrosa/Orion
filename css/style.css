@@ -174,3 +174,20 @@ footer {
 .btn-filter {
     width: 15% !important;
 }
+
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: 1px solid #eee;
+  text-align: left;
+  outline: none;
+  font-size: 1em;
+}
+
+.active, .collapsible:hover {
+  background-color: #D0D0D0;
+    border: 1px solid #eee;
+}

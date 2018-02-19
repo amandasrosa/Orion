@@ -8,17 +8,13 @@ table, td, th {
     margin: 0 !important;
 }
 
+.table-edit th {
+    padding: 1em;
+}
+
 .table-edit tr td:first-child, .table-edit th td:first-child {
     width: 2.5em;
     text-align: center;
-}
-
-.table-cell-question:hover {
-    background-color: silver;
-}
-
-.table-cell-question:focus {
-    background-color: white;
 }
 
 .table-cell-options ol {
@@ -27,17 +23,9 @@ table, td, th {
     width: 100%;
 }
 
-
 .table-cell-options ol input {
-    margin: 0;
-}
-
-.table-cell-options input[type="radio"] {
+    margin: 0.5em;
     vertical-align: middle;
-}
-
-.table-cell-options input[type="text"] {
-    width: 95% !important;
 }
 
 .table-report tr td {
