@@ -15,8 +15,8 @@
         <form action="userArea.php" method="post">
             <h1>Welcome!</h1>
 
-            <input type="text" id="inputUsername" name="username" class="input-user-login input-user-resgistration" placeholder="Username" required autofocus>
-            <input type="password" id="inputPassword" name="password" class="input-user-login input-user-resgistration" placeholder="Password" required>
+            <input type="text" id="inputUsername" name="username" class="input-user-login input-form input-60" placeholder="Username" required autofocus>
+            <input type="password" id="inputPassword" name="password" class="input-user-login input-form input-60" placeholder="Password" required>
 
             <button class="btn-basic btn-login" type="submit" name="signIn">Sign in</button>
         </form>

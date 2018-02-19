@@ -131,61 +131,36 @@ if (!isset($subjectId)) { $subjectId = "1"; }
 			optionsCell.appendChild(optionList);
 		}
 
+        function createFormWithParametersAndSubmit(url, method, paramName, paramValue) {
+            var form = document.createElement('form');
+            form.setAttribute('action', url);
+            form.setAttribute('method', method);
+            form.setAttribute('hidden', 'true');
+
+            var inputParameter = document.createElement('input');
+            inputParameter.setAttribute('type', 'text');
+            inputParameter.setAttribute('name', paramName);
+            inputParameter.setAttribute('value', paramValue);
+
+            form.appendChild(inputParameter);
+            document.body.appendChild(form);
+
+            form.submit();
+        }
+
         function editQuestion(event, questionId){
             event.preventDefault();
-            var url = 'upsertQuestion.php';
-            var editForm = document.createElement('form');
-            editForm.setAttribute('action', url);
-            editForm.setAttribute('method', 'get');
-            editForm.setAttribute('hidden', 'true');
-
-            var myInput = document.createElement('input');
-            myInput.setAttribute('type', 'text');
-            myInput.setAttribute('name', 'questionId');
-            myInput.setAttribute('value', questionId);
-
-            editForm.appendChild(myInput);
-            document.body.appendChild(editForm);
-
-            editForm.submit();
+            createFormWithParametersAndSubmit('upsertQuestion.php', 'get', 'questionId', questionId);
         };
 
         function newQuestion(event, subjectId){
             event.preventDefault();
-            var url = 'upsertQuestion.php';
-            var editForm = document.createElement('form');
-            editForm.setAttribute('action', url);
-            editForm.setAttribute('method', 'get');
-            editForm.setAttribute('hidden', 'true');
-
-            var myInput = document.createElement('input');
-            myInput.setAttribute('type', 'text');
-            myInput.setAttribute('name', 'subjectId');
-            myInput.setAttribute('value', subjectId);
-
-            editForm.appendChild(myInput);
-            document.body.appendChild(editForm);
-
-            editForm.submit();
+            createFormWithParametersAndSubmit('upsertQuestion.php', 'get', 'subjectId', subjectId);
         };
 
         function deleteQuestion(event, questionId){
             event.preventDefault();
-            var url = 'deleteQuestion.php';
-            var editForm = document.createElement('form');
-            editForm.setAttribute('action', url);
-            editForm.setAttribute('method', 'post');
-            editForm.setAttribute('hidden', 'true');
-
-            var myInput = document.createElement('input');
-            myInput.setAttribute('type', 'text');
-            myInput.setAttribute('name', 'questionIdToDelete');
-            myInput.setAttribute('value', questionId);
-
-            editForm.appendChild(myInput);
-            document.body.appendChild(editForm);
-
-            editForm.submit();
+            createFormWithParametersAndSubmit('deleteQuestion.php', 'post', 'questionIdToDelete', questionId);
         };
     </script>
 <section>
@@ -197,7 +172,7 @@ if (!isset($subjectId)) { $subjectId = "1"; }
 
 	foreach ($subjects as $subject) { ?>
 	<div>
-		<input type="text" class="input-user-resgistration fontSmaller" name="<?php echo htmlspecialchars($subject['subject_id']);?>" value="<?php echo htmlspecialchars($subject['description']); ?>"/>
+		<input type="text" class="input-form input-60 fontSmaller" name="<?php echo htmlspecialchars($subject['subject_id']);?>" value="<?php echo htmlspecialchars($subject['description']); ?>"/>
 		<img src="images/delete-icon.png" alt="Delete" height="45" width="45" class="alignBottomImg cursor">
 	</div>
 	<?php }?>
@@ -237,13 +212,13 @@ if (!isset($subjectId)) { $subjectId = "1"; }
                 <td class="table-cell-options" id="<?php echo $question['question_id'];?>" style="display: none;">
                     <ol type="a">
 						<li><input type="radio" name="<?php echo $question["question_id"]; ?>" value="a" id="<?php echo $question["question_id"]; ?>a" <?php echo $question["answer"] == 'a' ? 'checked' : ''; ?>/>
-						<input type="text" class="input-user-resgistration editOptions fontSmaller" name="<?php echo $question['question_id'];?>a" value="<?php echo htmlspecialchars($question['optionA']); ?>"/></li>
+						<input type="text" class="input-form input-60 editOptions fontSmaller" name="<?php echo $question['question_id'];?>a" value="<?php echo htmlspecialchars($question['optionA']); ?>"/></li>
                         <li><input type="radio" name="<?php echo $question["question_id"]; ?>" value="b" id="<?php echo $question["question_id"]; ?>b" <?php echo $question["answer"] == 'b' ? 'checked' : ''; ?>>
-						<input type="text" class="input-user-resgistration editOptions fontSmaller" name="<?php echo $question['question_id'];?>b" value="<?php echo htmlspecialchars($question['optionB']); ?>"/></li>
+						<input type="text" class="input-form input-60 editOptions fontSmaller" name="<?php echo $question['question_id'];?>b" value="<?php echo htmlspecialchars($question['optionB']); ?>"/></li>
                         <li><input type="radio" name="<?php echo $question["question_id"]; ?>" value="c" id="<?php echo $question["question_id"]; ?>c" <?php echo $question["answer"] == 'c' ? 'checked' : ''; ?>>
-						<input type="text" class="input-user-resgistration editOptions fontSmaller" name="<?php echo $question['question_id'];?>c" value="<?php echo htmlspecialchars($question['optionC']); ?>"/></li>
+						<input type="text" class="input-form input-60 editOptions fontSmaller" name="<?php echo $question['question_id'];?>c" value="<?php echo htmlspecialchars($question['optionC']); ?>"/></li>
                         <li><input type="radio" name="<?php echo $question["question_id"]; ?>" value="d" id="<?php echo $question["question_id"]; ?>d" <?php echo $question["answer"] == 'd' ? 'checked' : ''; ?>>
-						<input type="text" class="input-user-resgistration editOptions fontSmaller" name="<?php echo $question['question_id'];?>d" value="<?php echo htmlspecialchars($question['optionD']); ?>"/></li>
+						<input type="text" class="input-form input-60 editOptions fontSmaller" name="<?php echo $question['question_id'];?>d" value="<?php echo htmlspecialchars($question['optionD']); ?>"/></li>
                     </ol>
                 </td>
                 <td></td>

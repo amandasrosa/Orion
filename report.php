@@ -49,14 +49,14 @@ include 'view/header.php'; ?>
 	<hr>
 	<form class="form-questions center" action="report.php" method="post">
 		<label class="label-report">Test: </label>
-        <select name="subject" class="input-user-resgistration option-filter">
+        <select name="subject" class="input-form input-60 option-filter">
         	<option  value=""></option>
         	<?php foreach($getSubjects as $subject) { ?>
         		<option  value="<?php echo $subject['subject_id']; ?>"><?php echo $subject['description']; ?></option>
         	<?php } ?>
         </select>
         <label class="label-report">Date: </label>
-        <input type="text" name="date" class="" value="">
+        <input type="date" name="date" class="input-form" value="">
 		<button type="submit" class="btn-basic btn-filter" name="filterReport" >Ok</button>
 
 		<?php 

@@ -132,42 +132,42 @@ include 'view/header.php'; ?>
             <?php } ?>
 
             <label for="inputUsername" class="label-user-resgistration label-right">Username:</label>
-            <input type="text" name="inputUsername" class="input-user-resgistration" <?php echo (isset($_POST['editProfile']) ? 'disabled' : 'enabled') ?> placeholder="Username" required
+            <input type="text" name="inputUsername" class="input-form input-60" <?php echo (isset($_POST['editProfile']) ? 'disabled' : 'enabled') ?> placeholder="Username" required
                    value="<?php echo $user['username'] ?>">
             <div class="error-message hidden" id="error-for-inputUsername">Please choose a username.</div>
 
             <label for="inputPassword" class="label-user-resgistration label-right">Password:</label>
-            <input type="password" name="inputPassword" class="input-user-resgistration" placeholder="Password"
+            <input type="password" name="inputPassword" class="input-form input-60" placeholder="Password"
                    required value="<?php echo $user['password'] ?>">
             <div class="error-message hidden" id="error-for-inputPassword">Please inform a valid password.</div>
 
             <label for="inputConfirmPassword" class="label-user-resgistration label-right">Confirm Password:</label>
-            <input type="password" name="inputConfirmPassword" class="input-user-resgistration" placeholder="Password"
+            <input type="password" name="inputConfirmPassword" class="input-form input-60" placeholder="Password"
                    required value="<?php echo $user['password'] ?>">
             <div class="error-message hidden" id="error-for-inputConfirmPassword">Password does not match the confirm password.</div>
 
             <label for="inputFirstName" class="label-user-resgistration label-right">First Name:</label>
-            <input type="text" name="inputFirstName" class="input-user-resgistration" placeholder="First name"
+            <input type="text" name="inputFirstName" class="input-form input-60" placeholder="First name"
                    required value="<?php echo $user['firstName'] ?>">
             <div class="error-message hidden" id="error-for-inputFirstName">Please inform your first name.</div>
 
             <label for="inputLastName" class="label-user-resgistration label-right">Last Name:</label>
-            <input type="text" name="inputLastName" class="input-user-resgistration" placeholder="Last name"
+            <input type="text" name="inputLastName" class="input-form input-60" placeholder="Last name"
                    required value="<?php echo $user['lastName'] ?>">
             <div class="error-message hidden" id="error-for-inputLastName">Please inform your last name.</div>
 
             <label for="inputEmail" class="label-user-resgistration label-right">Email:</label>
-            <input type="email" name="inputEmail" class="input-user-resgistration" placeholder="Email"
+            <input type="email" name="inputEmail" class="input-form input-60" placeholder="Email"
                    required value="<?php echo $user['email'] ?>">
             <div class="error-message hidden" id="error-for-inputEmail">Please inform a valid email.</div>
 
             <label for="inputPhone" class="label-user-resgistration label-right">Phone:</label>
-            <input type="tel" name="inputPhone" class="input-user-resgistration" placeholder="Phone"
+            <input type="tel" name="inputPhone" class="input-form input-60" placeholder="Phone"
                    required value="<?php echo $user['phone'] ?>">
             <div class="error-message hidden" id="error-for-inputPhone">Please inform a valid phone number.</div>
 
             <label for="inputAddress" class="label-user-resgistration label-right">Address</label>
-            <input type="text" name="inputAddress" class="input-user-resgistration"ds placeholder="Address"
+            <input type="text" name="inputAddress" class="input-form input-60"ds placeholder="Address"
                    required value="<?php echo $user['address'] ?>">
             <div class="error-message hidden" id="error-for-inputAddress">Please inform your address.</div>
 

@@ -12,10 +12,8 @@
 .form-upsert-question {
     background-color: #f3f2f2;
     border: 1px solid #c1c1c1;
-    margin-top: 2rem;
+    margin: 2em auto;
     max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
     box-sizing: border-box;
     padding: 0 2.5em 1em 1em;
 }
@@ -25,14 +23,13 @@
     width: 50%;
 }
 
-.input-user-resgistration {
+.input-form {
     background: #fff;
     border: 1px solid #9c9c9c;
     padding: 0.5em;
     margin-bottom: 0.5rem;
     box-sizing: border-box;
     font-size: 1em;
-    width: 60%;
     border-radius: 4px;
     -webkit-transition: all 0.30s ease-in-out;
     -moz-transition: all 0.30s ease-in-out;
@@ -41,9 +38,13 @@
     outline: none;
 }
 
-.input-user-resgistration:focus {
+.input-form:focus {
     box-shadow: 0 0 5px rgba(0, 0, 128, 1);
     border: 1px solid rgba(0, 0, 128, 1);
+}
+
+.input-60 {
+    width: 60%;
 }
 
 .label-user-resgistration {
@@ -158,4 +159,9 @@ input[type=text]:disabled {
 .label-report {
     padding: 0.5em 1.5em;
     box-sizing: border-box;
+}
+
+select {
+    height: 2em;
+    overflow: hidden;
 }
