@@ -9,7 +9,7 @@ include 'view/header.php';
 
 $userId = $_SESSION['userId'];
 $subjectId = $_SESSION['subjectId'];
-$subjectName = get_subject($subjectId);
+$subject = get_subject($subjectId);
 $questions = get_questions_by_subject($subjectId);
 
 $count = 0;
@@ -27,9 +27,9 @@ foreach ($questions as $question) {
 $lastInsertedId = add_result($userId, $subjectId, $count);
 
 if ($count > 7 ) {
-    $result = "Score ".$count."/10. You have successfully passed the test. You are now certified in ".$subjectName.".";
+    $result = "Score " . $count . "/10. You have successfully passed the test. You are now certified in " . $subject['description'] . ".";
 } else {
-    $result = "Score ".$count."/10. Unfortunately you did not pass the test. Please try again later!";
+    $result = "Score " . $count . "/10. Unfortunately you did not pass the test. Please try again later!";
 }
 //echo "<pre>";
 //print_r($_POST);
