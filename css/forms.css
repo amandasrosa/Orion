@@ -47,6 +47,10 @@
     width: 60%;
 }
 
+.input-100 {
+    width: 100%;
+}
+
 .label-user-resgistration {
      text-align: right;
      display: block;

@@ -4,17 +4,21 @@ table, td, th {
 
 .table-edit {
     border-collapse: collapse;
-    width: 95%;
-    margin: 0 !important;
+    width: 80%;
+    margin: 0 auto !important;
 }
 
 .table-edit th {
     padding: 1em;
 }
 
-.table-edit tr td:first-child, .table-edit th td:first-child {
-    width: 2.5em;
+.table-edit tr td:first-child, .table-edit th td:first-child, .table-edit tr td:last-child, .table-edit th td:last-child {
+    width: 2em;
     text-align: center;
+}
+
+.table-cell-question input {
+    margin-bottom: 0;
 }
 
 .table-cell-options ol {

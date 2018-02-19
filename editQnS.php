@@ -50,6 +50,9 @@ if (!isset($subjectId)) { $subjectId = "1"; }
             event.preventDefault();
             createFormWithParametersAndSubmit('deleteQuestion.php', 'post', 'questionIdToDelete', questionId);
         };
+        function deleteSubject(event, questionId){
+            event.preventDefault();
+        };
     </script>
 <section>
 
@@ -57,13 +60,26 @@ if (!isset($subjectId)) { $subjectId = "1"; }
 <?php if (isset($_GET['editSubjects'])) {
 
 	$subjects = get_subjects();
-
-	foreach ($subjects as $subject) { ?>
-	<div>
-		<input type="text" class="input-form input-60 fontSmaller" name="<?php echo htmlspecialchars($subject['subject_id']);?>" value="<?php echo htmlspecialchars($subject['description']); ?>"/>
-		<img src="images/delete-icon.png" alt="Delete" height="45" width="45" class="alignBottomImg cursor">
-	</div>
-	<?php }?>
+?>
+    
+    <table class="table-edit" id="tableQuestions" align="center">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Subject</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($subjects as $subject) { ?>
+            <tr>
+                <td><?php echo htmlspecialchars($subject['subject_id']);?></td>
+                <td class="table-cell-question"><input class="input-form input-100" type="text" name="<?php echo $subject['subject_id'];?>" value="<?php echo htmlspecialchars($subject['description']);?>"/></td>
+                <td><input type="image" src="images/delete-icon.png" alt="Delete" height="45" width="45" class="alignBottomImg cursor" onclick="deleteSubject(event, <?php echo $question['question_id'];?>)"/></td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
 	<div class="center">
         <button type="submit" class="btn-basic center" name="add" >Add Subject</button>
     </div>
@@ -81,7 +97,8 @@ if (!isset($subjectId)) { $subjectId = "1"; }
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Description</th>
+                <th>Question</th>
+                <th></th>
                 <th></th>
                 <th></th>
             </tr>
