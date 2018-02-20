@@ -102,7 +102,7 @@ if (!isset($subjectId)) { $subjectId = "1"; }
     </script>
 <section>
 
-<form class="form-editQS" action="saveQnS.php" method="post">
+<form class="form-editQS" action="" method="post">
 <?php if (isset($_GET['editSubjects'])) {
 
 	$subjects = get_subjects();
@@ -155,7 +155,7 @@ if (!isset($subjectId)) { $subjectId = "1"; }
                 <td><?php echo htmlspecialchars($question['question_id']);?></td>
                 <td class="table-cell-question"><button class="collapsible" onclick="toggleOptions(this);return false;" value="<?php echo $question['question_id'];?>"><?php echo htmlspecialchars($question['description']);?></button></td>
                 <td><input type="image" src="images/arrow-down-icon.png" alt="Collapse" height="45" width="45" class="alignBottomImg cursor" value="<?php echo $question['question_id'];?>" onclick="toggleOptions(this);return false;" id="<?php echo $question['question_id'];?>"/></td>
-                <td><input type="image" src="images/delete-icon.png" alt="Delete" height="40" width="40" class="alignBottomImg cursor" onclick="deleteQuestion(event, <?php echo $question['question_id'];?>)"/></td>
+                <td><input type="image" src="images/delete-icon.png" alt="Delete" height="40" width="40" class="alignBottomImg cursor" id="deleteButton" onclick="createModal(event, <?php echo $question['question_id'];?>, '<?php echo $question['description'];?>')"/></td>
                 <td><input type="image" src="images/edit-icon.png" alt="Edit" height="30" width="30" class="alignBottomImg cursor" onclick="editQuestion(event, <?php echo $question['question_id'];?>)"/></td>
             </tr>
             <tr >
@@ -188,5 +188,5 @@ if (!isset($subjectId)) { $subjectId = "1"; }
 		<button type="submit" class="btn-basic" name="back">Back to Menu</button>
 	</form>
 </section>
-
+<script src="js/modal.js"></script>
 <?php include 'view/footer.php'; ?>
