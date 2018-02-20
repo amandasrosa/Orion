@@ -83,7 +83,7 @@ if (!isset($subjectId)) { $subjectId = "1"; }
 			buttonCell1.appendChild(okButton);
             
             var deleteButton = createButton("delete", id);
-            deleteButton.style.display = "none";
+            deleteButton.style.visibility = "hidden";
             deleteButton.id = okButton.value;
             deleteButton.addEventListener("click", function(ev) {
 				ev.preventDefault();
@@ -106,14 +106,18 @@ if (!isset($subjectId)) { $subjectId = "1"; }
     
         function upsertSubject(event, button) {
             event.preventDefault();
-            var success = true;
             
             if (button.alt == "ok button") {
+                var success = true;
+                
                 if (success) {
                     button.src = "images/edit-icon.png";
                     button.alt = "edit button";
+                    
                     var deleteButton = document.getElementById(button.value);
-                    deleteButton.style.display = "innerline";
+                    if (deleteButton.style.visibility == "hidden") {
+                        deleteButton.style.visibility = "visible";
+                    }
                 }
             } else if (button.alt == "edit button") {
                 button.src = "images/ok-icon.png";
