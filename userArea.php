@@ -8,6 +8,8 @@ require_once('model/subject_db.php');
 if (isset($_POST['signIn'])) {
 	$username = $_POST['username'];
 	//$password = $_POST['password'];
+} else if (isset($_GET['username'])) {
+    $username = $_GET['username'];
 }
 
 $getSubjects = get_subjects();
@@ -42,7 +44,7 @@ include 'view/header.php'; ?>
 			</div>
 		</div>
 	</form>
-	<form class="form-signin" action="userForm.php" method="post">
+	<form class="form-signin" action="userForm.php" method="get">
 		<button type="submit" class="btn-basic" name="editProfile" >Edit Profile</button>
         <input type="hidden" name="username" value="<?php echo $username?>">
 	</form>
