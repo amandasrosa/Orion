@@ -12,7 +12,12 @@ table, td, th {
     padding: 1em;
 }
 
-.table-edit tr td:first-child, .table-edit th td:first-child, .table-edit tr td:last-child, .table-edit th td:last-child {
+.table-edit tr td:first-child, .table-edit th td:first-child {
+    width: 2em;
+    text-align: center;
+}
+
+.table-edit-button-cell {
     width: 2em;
     text-align: center;
 }

@@ -51,10 +51,6 @@ if (!isset($subjectId)) { $subjectId = "1"; }
             createFormWithParametersAndSubmit('deleteQuestion.php', 'post', 'questionIdToDelete', questionId);
         };
     
-        function deleteSubject(event, subjectId){
-            event.preventDefault();
-        };
-    
         function addSubject(event) {
             event.preventDefault();
             
@@ -64,8 +60,11 @@ if (!isset($subjectId)) { $subjectId = "1"; }
             
 			var idCell = row1.insertCell(0);
 			var subject = row1.insertCell(1);
-			var buttonCell = row1.insertCell(2);
-
+			var buttonCell1 = row1.insertCell(2);
+            var buttonCell2 = row1.insertCell(3);
+            buttonCell1.classList.add("table-edit-button-cell");
+            buttonCell2.classList.add("table-edit-button-cell");
+            
             idCell.innerHTML = "new";
             
 			subject.classList.add("table-cell-question");
@@ -77,28 +76,54 @@ if (!isset($subjectId)) { $subjectId = "1"; }
             textInput.focus();
 			subject.appendChild(textInput);
             
+            var okButton = createButton("ok", id);
+            okButton.addEventListener("click", function(ev) {
+                upsertSubject(ev, this);
+			});
+			buttonCell1.appendChild(okButton);
+            
+            var deleteButton = createButton("delete", id);
+            deleteButton.style.display = "none";
+            deleteButton.id = okButton.value;
+            deleteButton.addEventListener("click", function(ev) {
+				ev.preventDefault();
+                deleteSubject(this);
+			});
+			buttonCell2.appendChild(deleteButton);
+        }
+    
+        function createButton(iconType, id) {
             var button = document.createElement("INPUT");
             button.setAttribute("type", "image");
-            button.src = "images/ok-icon.png";
-            button.alt = "Button";
+            button.src = "images/" + iconType + "-icon.png";
+            button.alt = iconType + " button";
             button.height = "40";
             button.width = "40";
             button.classList.add("alignBottomImg", "cursor");
-            button.value = "e" + id;
-            button.addEventListener("click", function(ev) {
-				ev.preventDefault();
-                saveSubject(this);
-			});
-			buttonCell.appendChild(button);
+            button.value = "new" + id;
+            return button;
         }
     
-        function saveSubject(button) {
-            button.src = "images/delete-icon.png";
-            button.addEventListener("click", function(ev) {
-                ev.preventDefault();
-                deleteSubject(event);
-            });
+        function upsertSubject(event, button) {
+            event.preventDefault();
+            var success = true;
+            
+            if (button.alt == "ok button") {
+                if (success) {
+                    button.src = "images/edit-icon.png";
+                    button.alt = "edit button";
+                    var deleteButton = document.getElementById(button.value);
+                    deleteButton.style.display = "innerline";
+                }
+            } else if (button.alt == "edit button") {
+                button.src = "images/ok-icon.png";
+                button.alt = "ok button";
+            }
         }
+    
+        function deleteSubject(event, subjectId){
+            event.preventDefault();
+        };
     </script>
 <section>
 
@@ -114,14 +139,16 @@ if (!isset($subjectId)) { $subjectId = "1"; }
                 <th>Id</th>
                 <th>Subject</th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
         <?php foreach ($subjects as $subject) { ?>
             <tr>
-                <td><?php echo htmlspecialchars($subject['subject_id']);?></td>
+                <td><?php echo $subject['subject_id'];?></td>
                 <td class="table-cell-question"><input class="input-form input-100" type="text" name="<?php echo $subject['subject_id'];?>" value="<?php echo htmlspecialchars($subject['description']);?>"/></td>
-                <td><input type="image" src="images/delete-icon.png" alt="Delete" height="40" width="40" class="alignBottomImg cursor" onclick="deleteSubject(event, <?php echo $subject['subject_id'];?>)"/></td>
+                <td class="table-edit-button-cell"><input type="image" src="images/edit-icon.png" alt="edit button" height="40" width="40" class="alignBottomImg cursor" onclick="upsertSubject(event, this)" value="<?php echo $subject['subject_id'];?>"/></td>
+                <td class="table-edit-button-cell"><input type="image" src="images/delete-icon.png" alt="Delete" height="40" width="40" class="alignBottomImg cursor" onclick="deleteSubject(event, this)" value="<?php echo $subject['subject_id'];?>"/></td>
             </tr>
         <?php } ?>
         </tbody>
@@ -155,8 +182,8 @@ if (!isset($subjectId)) { $subjectId = "1"; }
                 <td><?php echo htmlspecialchars($question['question_id']);?></td>
                 <td class="table-cell-question"><button class="collapsible" onclick="toggleOptions(this);return false;" value="<?php echo $question['question_id'];?>"><?php echo htmlspecialchars($question['description']);?></button></td>
                 <td><input type="image" src="images/arrow-down-icon.png" alt="Collapse" height="45" width="45" class="alignBottomImg cursor" value="<?php echo $question['question_id'];?>" onclick="toggleOptions(this);return false;" id="<?php echo $question['question_id'];?>"/></td>
-                <td><input type="image" src="images/delete-icon.png" alt="Delete" height="40" width="40" class="alignBottomImg cursor" onclick="deleteQuestion(event, <?php echo $question['question_id'];?>)"/></td>
                 <td><input type="image" src="images/edit-icon.png" alt="Edit" height="30" width="30" class="alignBottomImg cursor" onclick="editQuestion(event, <?php echo $question['question_id'];?>)"/></td>
+                <td><input type="image" src="images/delete-icon.png" alt="Delete" height="40" width="40" class="alignBottomImg cursor" onclick="deleteQuestion(event, <?php echo $question['question_id'];?>)"/></td>
             </tr>
             <tr >
                 <td></td>
