@@ -27,9 +27,9 @@ if (isset($_POST['registerUser'])) {
             die();
         }
     }
-} else if (isset($_POST['editProfile'])) {
+} else if (isset($_GET['editProfile'])) {
 
-    $username = filter_input(INPUT_POST, "username");
+    $username = filter_input(INPUT_GET, "username");
     $user = get_user($username);
     $user = normalizeUser($user);
 
@@ -125,7 +125,7 @@ include 'view/header.php'; ?>
         <form action="userForm.php" method="post" class="form-user-registration validate">
             <?php if(isset($_POST['register']) || isset($_POST['registerUser'])) { ?>
                 <h1 class="center-text">User Registration:</h1>
-            <?php } else if (isset($_POST['editProfile'])) { ?>
+            <?php } else if (isset($_GET['editProfile'])) { ?>
                 <h1 class="center-text">Edit Profile:</h1>
                 <input type="hidden" name="userId" value="<?php echo $user['user_id'] ?>">
                 <input type="hidden" name="editedUsername" value="<?php echo $user['username'] ?>">
@@ -183,7 +183,7 @@ include 'view/header.php'; ?>
                 <?php if(isset($_POST['register']) || isset($_POST['registerUser'])) { ?>
                     <input class="btn-basic btn-user-registration" type="submit" value="Cancel" name="cancelRegister" id="cancel" onclick="event.target.form.classList.remove('validate')">
                     <input class="btn-basic btn-user-registration" type="submit" value="Register" name="registerUser">
-                <?php } else if (isset($_POST['editProfile'])) { ?>
+                <?php } else if (isset($_GET['editProfile'])) { ?>
                     <input class="btn-basic btn-user-registration" type="submit" value="Cancel" name="cancelEditProfile" id="cancel" onclick="event.target.form.classList.remove('validate')">
                     <input class="btn-basic btn-user-registration" type="submit" value="Save" name="saveEditedUser">
                 <?php } ?>
