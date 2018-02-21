@@ -5,7 +5,7 @@ window.onclick = function(event) {
     }
 }
 
-function createModal(event, questionId, questionDescription) {
+function createModal(event, confirmation, message, okFunctionParam, okFunction) {
     event.preventDefault();
 
     modal = document.createElement("div");
@@ -26,11 +26,11 @@ function createModal(event, questionId, questionDescription) {
     modalContent.appendChild(modalHeader);
 
     var messageLineOne = document.createElement("p");
-    messageLineOne.textContent = "Are you sure you want to delete the question?";
+    messageLineOne.textContent = confirmation;
     modalContent.appendChild(messageLineOne);
 
     var messageLineTwo = document.createElement("p");
-    messageLineTwo.textContent = questionId + " - " + questionDescription;
+    messageLineTwo.textContent = message;
     modalContent.appendChild(messageLineTwo);
 
     var cancelButton = document.createElement("button");
@@ -53,14 +53,14 @@ function createModal(event, questionId, questionDescription) {
         modal.style.display = "none";
     });
 
-    okButton.addEventListener("click", function (event) {
-        event.preventDefault();
-        deleteQuestion(event, questionId);
+    function ok() {
+        okFunction(okFunctionParam);
         modal.style.display = "none";
-    });
+    }
+
+    okButton.addEventListener("click", ok);
 
     modal.style.display = "block";
 
     document.body.appendChild(modal);
 }
-

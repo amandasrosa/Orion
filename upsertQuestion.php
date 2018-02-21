@@ -56,7 +56,7 @@ if (isset($_GET["questionId"])) {
 include 'view/header.php'; ?>
 
     <section class="section-form">
-        <form action="upsertQuestion.php" method="post" class="form-upsert-question validate">
+        <form action="upsertQuestion.php" method="post" class="form-upsert-question center-me validate">
             <input type="hidden" name="questionId" value="<?php echo $question['question_id'] ?>">
             <?php if(isUpdate($action)) { ?>
                 <input type="hidden" name="questionSubjectId" value="<?php echo $question['subject_id'] ?>">

@@ -55,8 +55,7 @@ if (isset($_POST["SubjectInsert"])) {
             createFormWithParametersAndSubmit('upsertQuestion.php', 'get', 'subjectId', subjectId);
         };
 
-        function deleteQuestion(event, questionId){
-            event.preventDefault();
+        function deleteQuestion(questionId){
             createFormWithParametersAndSubmit('deleteQuestion.php', 'post', 'questionIdToDelete', questionId);
         };
     
@@ -135,15 +134,13 @@ if (isset($_POST["SubjectInsert"])) {
                 textInput.readOnly = false;
             }
         }
-    
-        function deleteSubject(event, button){
-            event.preventDefault();
-            
+
+        function deleteSubject(button){
             var param1 = createInputParameter("SubjectDelete", "1");
             var param2 = createInputParameter("id", button.value);
             var params = [param1, param2];
             createFormAndSubmit("editQnS.php", "post", params);
-        };
+        }
     
         function createInputParameter(name, value) {
             var inputParameter = document.createElement('input');
@@ -190,7 +187,7 @@ if (isset($_POST["SubjectInsert"])) {
                 <td><?php echo $subject['subject_id'];?></td>
                 <td class="table-cell-question"><input class="input-form input-100" type="text" name="<?php echo $subject['subject_id'];?>" value="<?php echo htmlspecialchars($subject['description']);?>" id="<?php echo $subject['subject_id'];?>" readonly required/></td>
                 <td class="table-edit-button-cell"><input type="image" src="images/edit-icon.png" alt="edit button" height="30" width="30" class="alignBottomImg cursor" onclick="upsertSubject(event, this)" value="<?php echo $subject['subject_id'];?>"/></td>
-                <td class="table-edit-button-cell"><input type="image" src="images/delete-icon.png" alt="Delete" height="30" width="30" class="alignBottomImg cursor" onclick="deleteSubject(event, this)" value="<?php echo $subject['subject_id'];?>"/></td>
+                <td class="table-edit-button-cell"><input type="image" src="images/delete-icon.png" alt="Delete" height="30" width="30" class="alignBottomImg cursor" onclick="createModal(event, 'Are you sure you want to delete the subject?', '<?php echo $subject['subject_id'] . ' - ' . $subject['description'];?>', this, deleteSubject)" value="<?php echo $subject['subject_id'];?>"/></td>
             </tr>
         <?php } ?>
         </tbody>
@@ -225,7 +222,7 @@ if (isset($_POST["SubjectInsert"])) {
                 <td class="table-cell-question"><button class="collapsible" onclick="toggleOptions(this);return false;" value="<?php echo $question['question_id'];?>"><?php echo htmlspecialchars($question['description']);?></button></td>
                 <td><input type="image" src="images/arrow-down-icon.png" alt="Collapse" height="45" width="45" class="alignBottomImg cursor" value="<?php echo $question['question_id'];?>" onclick="toggleOptions(this);return false;" id="<?php echo $question['question_id'];?>"/></td>
                 <td><input type="image" src="images/edit-icon.png" alt="Edit" height="30" width="30" class="alignBottomImg cursor" onclick="editQuestion(event, <?php echo $question['question_id'];?>)"/></td>
-                <td><input type="image" src="images/delete-icon.png" alt="Delete" height="30" width="30" class="alignBottomImg cursor" id="deleteButton" onclick="createModal(event, <?php echo $question['question_id'];?>, '<?php echo $question['description'];?>')"/></td>
+                <td><input type="image" src="images/delete-icon.png" alt="Delete" height="30" width="30" class="alignBottomImg cursor" id="deleteButton" onclick="createModal(event, 'Are you sure you want to delete the question?', '<?php echo $question['question_id'] . ' - ' . $question['description'];?>', <?php echo $question['question_id'];?>, deleteQuestion)"/></td>
             </tr>
             <tr >
                 <td></td>
