@@ -56,7 +56,7 @@ if (!empty($getResults)) {
 
 include 'view/header.php'; ?>
 
-<section>
+<section style="background-color: #D0D0D0;">
 	<form class="form-questions">
 		<table class="table-report center-margin">
 			<tr>

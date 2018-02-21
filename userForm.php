@@ -13,7 +13,7 @@ if (isset($_POST['registerUser'])) {
     if (isValid($user)) {
         $userId = add_user(
             false,
-            $user['username'],
+            strtolower($user['username']),
             $user['password'],
             $user['firstName'],
             $user['lastName'],
@@ -92,7 +92,7 @@ function isValid($user) {
 }
 
 function isValidUserName($user) {
-    $isValid = empty(get_user($user['username']));
+    $isValid = empty(get_user(strtolower($user['username'])));
 
     if (!$isValid) {
         global $errorMessage;
@@ -162,13 +162,13 @@ include 'view/header.php'; ?>
             <div class="error-message hidden" id="error-for-inputEmail">Please inform a valid email.</div>
 
             <label for="inputPhone" class="label-user-resgistration label-right">Phone:</label>
-            <input type="tel" name="inputPhone" class="input-form input-60" placeholder="Phone"
+            <input type="tel" name="inputPhone" class="input-form input-60" placeholder="Ex: (999)999-9999" pattern="[\(]\d{3}[\)]\d{3}[\-]\d{4}"
                    required value="<?php echo $user['phone'] ?>">
             <div class="error-message hidden" id="error-for-inputPhone">Please inform a valid phone number.</div>
 
             <label for="inputAddress" class="label-user-resgistration label-right">Address</label>
-            <input type="text" name="inputAddress" class="input-form input-60"ds placeholder="Address"
-                   required value="<?php echo $user['address'] ?>">
+            <input type="text" name="inputAddress" class="input-form input-60"ds placeholder="Ex: 999 Sheppard Av"
+                   required value="<?php echo $user['address'] ?>" pattern="\w+(\s\w+){2,}">
             <div class="error-message hidden" id="error-for-inputAddress">Please inform your address.</div>
 
             <section>

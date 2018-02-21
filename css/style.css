@@ -213,3 +213,8 @@ footer {
   background-color: #D0D0D0;
     border: 1px solid #eee;
 }
+
+.error-login-message {
+    color: red;
+    text-align: center;
+}

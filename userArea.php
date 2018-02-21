@@ -1,5 +1,5 @@
-<?php 
-session_start();
+<?php
+
 
 require_once('model/database.php');
 require_once('model/user_db.php');
@@ -8,10 +8,19 @@ require_once('model/result_db.php');
 
 if (isset($_POST['signIn'])) {
 	$username = $_POST['username'];
-	//$password = $_POST['password'];
+    $password = $_POST['password'];
+	$user = get_user($username);
+    if (empty($user) || strcmp($user['password'], $password) != 0) {
+        $errorMessage = "You have entered an invalid username or password";
+        include 'index.php';
+        die();
+    } else {
+    }
 } else if (isset($_GET['username'])) {
     $username = $_GET['username'];
 }
+
+session_start();
 
 if (isset($_POST['abort'])) {
 	$resultId = $_SESSION['resultId'];
@@ -31,6 +40,8 @@ if (!isset($_SESSION['username'])) {
 	$_SESSION['userId'] = $getUser['user_id'];
 	$_SESSION['flag_admin'] = $getUser['flag_admin'];
 }
+
+
 
 include 'view/header.php'; ?>
 
@@ -57,7 +68,7 @@ include 'view/header.php'; ?>
         <input type="hidden" name="username" value="<?php echo $username?>">
 	</form>
     <form class="form-signin" action="userAttempts.php" method="get">
-        <button type="submit" class="btn-basic" name="lastestResults" >Attempts</button>
+        <button type="submit" class="btn-basic input-80" name="lastestResults" >Attempts</button>
     </form>
 	<form class="form-signin" action="index.php" method="post">
 		<button type="submit" class="btn-basic input-80" name="signOut" >Sign out</button>

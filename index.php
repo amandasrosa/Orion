@@ -18,6 +18,10 @@
             <input type="text" id="inputUsername" name="username" class="input-user-login input-form input-60" placeholder="Username" required autofocus>
             <input type="password" id="inputPassword" name="password" class="input-user-login input-form input-60" placeholder="Password" required>
 
+            <?php if(!empty($errorMessage)) { ?>
+                <p class="error-login-message"><?php echo $errorMessage ?></p>
+            <?php } ?>
+
             <button class="btn-basic btn-login" type="submit" name="signIn">Sign in</button>
         </form>
         <form action="userForm.php" method="post">
