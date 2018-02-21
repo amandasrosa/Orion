@@ -78,7 +78,7 @@ include 'view/header.php'; ?>
                    required value="<?php echo $question['optionA'] ?>" maxlength="200">
             <div class="error-message hidden" id="error-for-inputOptionA">Please inform a valid option.</div>
 
-            <label for="inputOptionB" class="label-user-resgistration label-right">Option C:</label>
+            <label for="inputOptionB" class="label-user-resgistration label-right">Option B:</label>
             <input type="text" name="inputOptionB" class="input-form input-60" placeholder="Option B"
                    required value="<?php echo $question['optionB'] ?>" maxlength="200">
             <div class="error-message hidden" id="error-for-inputOptionB">Please inform a valid option.</div>
