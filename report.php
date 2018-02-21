@@ -49,7 +49,9 @@ if (!empty($getResults)) {
 			$total++;
 		}
 	}
-	$avg = $avg/$total;
+	if ($total != 0) {
+		$avg = $avg/$total;
+	}
 }
 
 include 'view/header.php'; ?>
