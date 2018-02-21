@@ -206,7 +206,6 @@ if (isset($_POST["SubjectInsert"])) {
                 </td>
                 <td class="table-cell-question">
                     <input class="input-form input-100" type="text" name="<?php echo 'sub'.$subject['subject_id'];?>" value="<?php echo htmlspecialchars($subject['description']);?>" id="<?php echo $subject['subject_id'];?>" disabled required/>
-                    <div class="error-message hidden" id="error-for-sub<?php echo $subject['subject_id'];?>">Please inform a valid subject.</div>
                 </td>
                 <td class="table-edit-button-cell">
                     <input type="image" src="images/edit-icon.png" alt="edit button" height="30" width="30" class="alignBottomImg cursor" onclick="upsertSubject(event, this)" value="<?php echo $subject['subject_id'];?>"/>
@@ -214,6 +213,10 @@ if (isset($_POST["SubjectInsert"])) {
                 <td class="table-edit-button-cell">
                     <input type="image" src="images/delete-icon.png" alt="Delete" height="30" width="30" class="alignBottomImg cursor" onclick="createModal(event, 'Are you sure you want to delete the subject?', '<?php echo $subject['subject_id'] . ' - ' . $subject['description'];?>', this, deleteSubject)" value="<?php echo $subject['subject_id'];?>"/>
                 </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><div class="error-message hidden" id="error-for-sub<?php echo $subject['subject_id'];?>">Please inform a valid subject.</div></td>
             </tr>
         <?php } ?>
         </tbody>
