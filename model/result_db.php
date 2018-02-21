@@ -55,16 +55,20 @@ function get_results() {
     }
 }
 
-function get_results_for_report($subject_id, $testDate) {
+function get_results_for_report($subject_id, $testDate, $selectedStatus) {
     global $db;
 
-    $where = "";
-    if ($subject_id != "" && $testDate != "") {
-        $where = "WHERE r.subject_id = ".$subject_id." AND r.testDate = '".$testDate."'";
-    } else if ($subject_id != "" ) {
-        $where = "WHERE r.subject_id = ".$subject_id;
-    } else if ($testDate != "") {
-        $where = "WHERE r.testDate = '".$testDate."'";
+    $where = "WHERE 1=1";
+    if(!empty($subject_id)) {
+        $where .= " AND r.subject_id = $subject_id";
+    }
+
+    if(!empty($testDate))  {
+        $where .= "  AND r.testDate = '$testDate'";
+    }
+
+    if(!empty($selectedStatus))  {
+        $where .= "  AND r.status = '$selectedStatus'";
     }
 
     $query = 'SELECT u.first_name, u.last_name, s.description, r.subject_id, r.grade, r.testDate, r.status
@@ -73,8 +77,9 @@ function get_results_for_report($subject_id, $testDate) {
                 ON r.user_id = u.user_id
                 INNER JOIN subject s
                 ON r.subject_id = s.subject_id '
-                .$where.'
+                .$where.' 
             ORDER BY r.grade DESC';
+
 
     try {
         $statement = $db->prepare($query);
@@ -98,6 +103,21 @@ function get_result($result_id) {
         $statement->bindValue(':result_id', $result_id);
         $statement->execute();
         $result = $statement->fetch();
+        $statement->closeCursor();
+        return $result;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }
+}
+
+function get_distinct_result_status() {
+    global $db;
+    $query = 'SELECT DISTINCT status
+              FROM result';
+    try {
+        $statement = $db->query($query);
+        $result = $statement->fetchAll(PDO::FETCH_COLUMN, 0);
         $statement->closeCursor();
         return $result;
     } catch (PDOException $e) {
