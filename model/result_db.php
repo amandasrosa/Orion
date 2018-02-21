@@ -51,15 +51,27 @@ function get_results() {
     }
 }
 
-function get_results_for_report() {
+function get_results_for_report($subject_id, $testDate) {
     global $db;
+
+    $where = "";
+    if ($subject_id != "" && $testDate != "") {
+        $where = "WHERE r.subject_id = ".$subject_id." AND r.testDate = '".$testDate."'";
+    } else if ($subject_id != "" ) {
+        $where = "WHERE r.subject_id = ".$subject_id;
+    } else if ($testDate != "") {
+        $where = "WHERE r.testDate = '".$testDate."'";
+    }
+
     $query = 'SELECT u.first_name, u.last_name, s.description, r.subject_id, r.grade, r.testDate
                 FROM result r
                 INNER JOIN user u
                 ON r.user_id = u.user_id
                 INNER JOIN subject s
-                ON r.subject_id = s.subject_id
+                ON r.subject_id = s.subject_id '
+                .$where.'
             ORDER BY r.grade DESC';
+
     try {
         $statement = $db->prepare($query);
         $statement->execute();

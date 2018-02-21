@@ -5,10 +5,23 @@ require_once('model/subject_db.php');
 require_once('model/result_db.php');
 
 $getSubjects = get_subjects();
-$getResults = get_results_for_report();
 
 //echo "<pre>";
 //print_r($_POST);
+//echo "</pre>";
+
+$getResults = array();
+if (isset($_POST['filterReport'])) {
+	$getResults = get_results_for_report($_POST['subject'], $_POST['date']);
+	
+	if (!empty($_POST['subject'])) {
+		$subject_id = $_POST['subject'];
+		$subject_desc = get_subject($subject_id);
+	}
+}
+
+//echo "<pre>";
+//print_r($getResults);
 //echo "</pre>";
 
 $success = 0;
@@ -41,7 +54,7 @@ include 'view/header.php'; ?>
 			<tr>
 				<td nowrap>Users Successfully: <?php echo $success; ?></td>
 				<td nowrap>Users Fail: <?php echo $fail; ?></td>
-				<td nowrap>Users Average: <?php echo $avg; ?></td>
+				<td nowrap>Users Average: <?php echo number_format($avg,2); ?></td>
 				<td nowrap>Users doing the test: <?php echo $doingTest; ?></td>
 			</tr>
 		</table>
@@ -50,86 +63,63 @@ include 'view/header.php'; ?>
 	<form class="form-questions center" action="report.php" method="post">
 		<label class="label-report">Test: </label>
         <select name="subject" class="input-form input-60 option-filter">
-        	<option  value=""></option>
+        	<option value="<?php echo (isset($_POST['subject'])) ? $_POST['subject'] : "";?>"><?php echo (!empty($_POST['subject'])) ? $subject_desc['description'] : "";?></option>
         	<?php foreach($getSubjects as $subject) { ?>
         		<option  value="<?php echo $subject['subject_id']; ?>"><?php echo $subject['description']; ?></option>
         	<?php } ?>
         </select>
         <label class="label-report">Date: </label>
-        <input type="date" name="date" class="input-form" value="">
+        <input type="date" name="date" class="input-form" value="<?php echo (!empty($_POST['date'])) ? $_POST['date'] : "";?>">
 		<button type="submit" class="btn-basic btn-filter" name="filterReport" >Ok</button>
 
 		<?php 
-		
-		//tratar caso nao retorne resultados
-		//trocar isset to empty
-
 		if (isset($_POST['filterReport'])) { ?>
 
 		<table class="table-report center-margin">
-			<?php if (empty($_POST['subject']) && empty($_POST['date'])) { ?>
+			<?php if (empty($getResults)) { ?>
 				<tr>
-					<td nowrap>User</td>
-					<td nowrap>Subject</td>
-					<td nowrap>Grade</td>
+					<th nowrap colspan="3">Sorry, there are no results to show</th>
 				</tr>
-				<?php foreach($getResults as $result) { ?>
+			<?php } else { ?>
 				<tr>
-					<td nowrap><?php echo $result['first_name']." ".$result['last_name']; ?></td>
-					<td nowrap><?php echo $result['description']; ?></td>
-					<td nowrap><?php echo $result['grade']; ?></td>
+					<th nowrap>User</th>
+					<th nowrap>Subject</th>
+					<th nowrap>Grade</th>
 				</tr>
-				<?php } ?>
-			<?php } ?>
-			<?php if (isset($_POST['subject'])) { 
-				 $subjectt = $_POST['subject'] ?? '';?>
-				 <tr>
-					<td nowrap>User</td>
-					<td nowrap>Subject</td>
-					<td nowrap>Grade</td>
-				</tr>
-				<?php foreach($getResults as $result) { ?>
-					<?php if($result['subject_id'] == $subjectt) { ?>
+				<?php if (empty($_POST['subject']) && empty($_POST['date'])) { ?>
+					<?php foreach($getResults as $result) { ?>
 					<tr>
 						<td nowrap><?php echo $result['first_name']." ".$result['last_name']; ?></td>
 						<td nowrap><?php echo $result['description']; ?></td>
 						<td nowrap><?php echo $result['grade']; ?></td>
 					</tr>
 					<?php } ?>
-				<?php } ?>
-			<?php } ?>
-			<?php if (isset($_POST['date'])) { 
-				$date = $_POST['date'] ?? '';?>
-				<tr>
-					<td nowrap>User</td>
-					<td nowrap>Subject</td>
-					<td nowrap>Grade</td>
-				</tr>
-				<?php foreach($getResults as $result) { ?>
-					<?php if($result['testDate'] == $date) { ?>
-					<tr>
-						<td nowrap><?php echo $result['first_name']." ".$result['last_name']; ?></td>
-						<td nowrap><?php echo $result['description']; ?></td>
-						<td nowrap><?php echo $result['grade']; ?></td>
-					</tr>
+				<?php } else if (!empty($_POST['subject'])) { ?>
+					 
+					<?php foreach($getResults as $result) { ?>
+						<tr>
+							<td nowrap><?php echo $result['first_name']." ".$result['last_name']; ?></td>
+							<td nowrap><?php echo $result['description']; ?></td>
+							<td nowrap><?php echo $result['grade']; ?></td>
+						</tr>
 					<?php } ?>
-				<?php } ?>
-			<?php } ?>
-			<?php if (isset($_POST['subject_id']) && isset($_POST['date'])) { 
-				$subjectt = $_POST['subject_id'] ?? '';
-				$date = $_POST['date'] ?? '';?>
-				<tr>
-					<td nowrap>User</td>
-					<td nowrap>Subject</td>
-					<td nowrap>Grade</td>
-				</tr>
-				<?php foreach($getResults as $result) { ?>
-					<?php if( ($result['subject_id'] == $subjectt) && ($result['testDate'] == $date) ) { ?>
-					<tr>
-						<td nowrap><?php echo $result['first_name']." ".$result['last_name']; ?></td>
-						<td nowrap><?php echo $result['description']; ?></td>
-						<td nowrap><?php echo $result['grade']; ?></td>
-					</tr>
+				<?php } else if (!empty($_POST['date'])) { 
+					$date = $_POST['date'] ?? '';?>
+					
+					<?php foreach($getResults as $result) { ?>
+						<tr>
+							<td nowrap><?php echo $result['first_name']." ".$result['last_name']; ?></td>
+							<td nowrap><?php echo $result['description']; ?></td>
+							<td nowrap><?php echo $result['grade']; ?></td>
+						</tr>
+					<?php } ?>
+				<?php } else if (!empty($_POST['subject_id']) && !empty($_POST['date'])) { ?>
+					<?php foreach($getResults as $result) { ?>
+						<tr>
+							<td nowrap><?php echo $result['first_name']." ".$result['last_name']; ?></td>
+							<td nowrap><?php echo $result['description']; ?></td>
+							<td nowrap><?php echo $result['grade']; ?></td>
+						</tr>
 					<?php } ?>
 				<?php } ?>
 			<?php } ?>

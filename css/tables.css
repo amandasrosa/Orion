@@ -42,6 +42,24 @@ table, td, th {
 }
 
 .table-report {
-    padding: 2em;
+    margin: 2.3em auto;
     border-collapse: collapse;
+    width: 50%;
+}
+
+.table-report td, .table-report th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.table-report tr:nth-child(even){background-color: #f2f2f2;}
+
+.table-report tr:hover {background-color: #ddd;}
+
+.table-report th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    background-color: #20B2AA;
+    color: white;
 }
