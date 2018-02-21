@@ -67,7 +67,7 @@ include 'view/header.php'; ?>
 		</table>
 	</form>
 	<hr>
-	<forma class="form-questions center" action="report.php" method="post">
+	<form class="form-questions center" action="report.php" method="post">
 		<label class="label-report">Test: </label>
         <select name="subject" class="input-form">
         	<option value="">All</option>
@@ -114,7 +114,7 @@ include 'view/header.php'; ?>
 
         <?php } ?>
 
-	</forma>
+	</form>
 	<form class="form-signin center" action="userArea.php" method="post">
 		<button type="submit" class="btn-basic" name="back">Back to Menu</button>
 	</form>
