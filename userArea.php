@@ -29,7 +29,7 @@ if (isset($_POST['abort'])) {
 	$rowCountUpdate = update_result($resultId, $userId, $subjectId, 0, 'ABORTED');
 }
 
-$getSubjects = get_subjects();
+$getSubjects = get_subjects_q();
 $getTypeUser = "";
 $getUser = get_user($username);
 $getTypeUser = $getUser['flag_admin'];

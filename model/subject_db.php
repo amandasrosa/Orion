@@ -17,6 +17,29 @@ function get_subjects() {
     }
 }
 
+function get_subjects_q() {
+    global $db;
+    $query = 'SELECT s.active, s.description, s.subject_id, count(q.question_id) 
+                FROM subject s 
+                INNER JOIN question q ON s.subject_id = q.subject_id
+                WHERE s.active = 1
+                GROUP BY s.active, s.description, s.subject_id
+                HAVING count(q.question_id) >= 20
+                ORDER BY s.subject_id';
+    try {
+        $statement = $db->prepare($query);
+        $statement->execute();
+        $result = $statement->fetchAll();
+        $statement->closeCursor();
+        return $result;
+    } catch (PDOException $e) {
+        $error_message = $e->getMessage();
+        display_db_error($error_message);
+    }
+}
+
+
+
 function get_subject($subject_id) {
     global $db;
     $query = 'SELECT *
