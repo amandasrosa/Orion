@@ -44,46 +44,46 @@ include 'view/header.php'; ?>
 	</div>
 	<form class="form-signin" action="doAssessment.php" method="post">
 		<div class="drop">
-			<button type="button" class="btn-basic dropBtn" name="doAssessment" >Take the test <i class="arrowDown"></i></button>
+			<button type="button" class="btn-basic dropBtn input-80" name="doAssessment" >Take the test <i class="arrowDown"></i></button>
 			<div class="dropDownGroup">
 			<?php foreach($getSubjects as $subject) { ?>
-				<button type="submit" class="btn-basic" name="subjectId" value="<?php echo $subject['subject_id']; ?>" ><?php echo $subject['description']; ?></button>
+				<button type="submit" class="btn-basic input-80" name="subjectId" value="<?php echo $subject['subject_id']; ?>" ><?php echo $subject['description']; ?></button>
 			<?php } ?>
 			</div>
 		</div>
 	</form>
 	<form class="form-signin" action="userForm.php" method="get">
-		<button type="submit" class="btn-basic" name="editProfile" >Edit Profile</button>
+		<button type="submit" class="btn-basic input-80" name="editProfile" >Edit Profile</button>
         <input type="hidden" name="username" value="<?php echo $username?>">
 	</form>
     <form class="form-signin" action="userAttempts.php" method="get">
         <button type="submit" class="btn-basic" name="lastestResults" >Attempts</button>
     </form>
 	<form class="form-signin" action="index.php" method="post">
-		<button type="submit" class="btn-basic" name="signOut" >Sign out</button>
+		<button type="submit" class="btn-basic input-80" name="signOut" >Sign out</button>
 	</form>
 	<?php } else {?>
 
 		<p>Welcome to Administration Area, <?php echo $_SESSION['name']."!"; ?></p>
 	</div>
 	<form class="form-signin" action="editQnS.php" method="get">
-		<button type="submit" class="btn-basic" name="editSubjects" >Edit Subjects</button>
+		<button type="submit" class="btn-basic input-80" name="editSubjects" >Edit Subjects</button>
 	</form>
 	<form class="form-signin" action="editQnS.php" method="get">
 		<div class="drop">
-		<button type="button" class="btn-basic dropBtn" name="" >Edit Questions</button>
+		<button type="button" class="btn-basic dropBtn input-80" name="" >Edit Questions</button>
 			<div class="dropDownGroup">
 			<?php foreach($getSubjects as $subject) { ?>
-				<button type="submit" class="btn-basic" name="questSubjectId" value="<?php echo $subject['subject_id']; ?>" ><?php echo $subject['description']; ?></button>
+				<button type="submit" class="btn-basic input-80" name="questSubjectId" value="<?php echo $subject['subject_id']; ?>" ><?php echo $subject['description']; ?></button>
 			<?php } ?>
 			</div>
 		</div>
 	</form>
 	<form class="form-signin" action="report.php" method="post">
-		<button type="submit" class="btn-basic" name="report" >Reports</button>
+		<button type="submit" class="btn-basic input-80" name="report" >Reports</button>
 	</form>
 	<form class="form-signin" action="index.php" method="post">
-		<button type="submit" class="btn-basic" name="signOut" >Sign out</button>
+		<button type="submit" class="btn-basic input-80" name="signOut" >Sign out</button>
 	</form>
 
 	<?php }?>

@@ -42,6 +42,7 @@
 }
 
 select {
+    padding: 0 0.5em !important;
     height: 2em;
     overflow: hidden;
 }
@@ -51,8 +52,8 @@ select {
     border: 1px solid rgba(0, 0, 128, 1);
 }
 
-.input-60 {
-    width: 60%;
+.input-80 {
+    width: 80%;
 }
 
 .input-100 {

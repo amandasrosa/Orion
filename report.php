@@ -49,7 +49,9 @@ if (!empty($getResults)) {
 			$total++;
 		}
 	}
-	$avg = $avg/$total;
+	if ($total != 0) {
+		$avg = $avg/$total;
+	}
 }
 
 include 'view/header.php'; ?>
@@ -69,7 +71,7 @@ include 'view/header.php'; ?>
 	<hr>
 	<form class="form-questions center" action="report.php" method="post">
 		<label class="label-report">Test: </label>
-        <select name="subject" class="input-form input-60 option-filter">
+        <select name="subject" class="input-form option-filter">
         	<option value="<?php echo (isset($_POST['subject'])) ? $_POST['subject'] : "";?>"><?php echo (!empty($_POST['subject'])) ? $subject_desc['description'] : "";?></option>
         	<?php foreach($getSubjects as $subject) { ?>
         		<option  value="<?php echo $subject['subject_id']; ?>"><?php echo $subject['description']; ?></option>
@@ -146,7 +148,7 @@ include 'view/header.php'; ?>
 
 	</form>
 	<form class="form-signin center" action="userArea.php" method="post">
-		<button type="submit" class="btn-basic" name="back">Back to Menu</button>
+		<button type="submit" class="btn-basic input-80" name="back">Back to Menu</button>
 	</form>
 </section>
 
