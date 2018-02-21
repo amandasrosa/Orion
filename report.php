@@ -29,19 +29,25 @@ $fail = 0;
 $avg = 0;
 $total = 0;
 $doingTest = 0;
+$abortedTest = 0;
 
 if (!empty($getResults)) {
-	$total = count($getResults);
+	//$total = count($getResults);
 
 	foreach ($getResults as $result) {
-		if ($result['grade'] == null) {
+		if ($result['status'] == 'DOING') {
 			$doingTest++;
-		} else if ($result['grade'] > 7) {
-			$success++;
-		} else {
-			$fail++;
+		} else if ($result['status'] == 'ABORTED') {
+			$abortedTest++;
+		} else if ($result['status'] == 'DONE') {
+			 if ($result['grade'] > 7) {
+				$success++;
+			} else {
+				$fail++;
+			}
+			$avg += $result['grade'];
+			$total++;
 		}
-		$avg += $result['grade'];
 	}
 	$avg = $avg/$total;
 }
@@ -56,6 +62,7 @@ include 'view/header.php'; ?>
 				<td nowrap>Users Fail: <?php echo $fail; ?></td>
 				<td nowrap>Users Average: <?php echo number_format($avg,2); ?></td>
 				<td nowrap>Users doing the test: <?php echo $doingTest; ?></td>
+				<td nowrap>Aborted tests: <?php echo $abortedTest; ?></td>
 			</tr>
 		</table>
 	</form>
@@ -85,6 +92,7 @@ include 'view/header.php'; ?>
 					<th nowrap>User</th>
 					<th nowrap>Subject</th>
 					<th nowrap>Grade</th>
+					<th nowrap>Status</th>
 				</tr>
 				<?php if (empty($_POST['subject']) && empty($_POST['date'])) { ?>
 					<?php foreach($getResults as $result) { ?>
@@ -92,34 +100,43 @@ include 'view/header.php'; ?>
 						<td nowrap><?php echo $result['first_name']." ".$result['last_name']; ?></td>
 						<td nowrap><?php echo $result['description']; ?></td>
 						<td nowrap><?php echo $result['grade']; ?></td>
+						<td nowrap><?php echo $result['status']; ?></td>
 					</tr>
 					<?php } ?>
 				<?php } else if (!empty($_POST['subject'])) { ?>
-					 
 					<?php foreach($getResults as $result) { ?>
+						<?php if($result['status'] == 'DONE') { ?>
 						<tr>
 							<td nowrap><?php echo $result['first_name']." ".$result['last_name']; ?></td>
 							<td nowrap><?php echo $result['description']; ?></td>
 							<td nowrap><?php echo $result['grade']; ?></td>
+							<td nowrap><?php echo $result['status']; ?></td>
 						</tr>
+						<?php } ?>
 					<?php } ?>
 				<?php } else if (!empty($_POST['date'])) { 
 					$date = $_POST['date'] ?? '';?>
 					
 					<?php foreach($getResults as $result) { ?>
+						<?php if($result['status'] == 'DONE') { ?>
 						<tr>
 							<td nowrap><?php echo $result['first_name']." ".$result['last_name']; ?></td>
 							<td nowrap><?php echo $result['description']; ?></td>
 							<td nowrap><?php echo $result['grade']; ?></td>
+							<td nowrap><?php echo $result['status']; ?></td>
 						</tr>
+						<?php } ?>
 					<?php } ?>
 				<?php } else if (!empty($_POST['subject_id']) && !empty($_POST['date'])) { ?>
 					<?php foreach($getResults as $result) { ?>
+						<?php if($result['status'] == 'DONE') { ?>
 						<tr>
 							<td nowrap><?php echo $result['first_name']." ".$result['last_name']; ?></td>
 							<td nowrap><?php echo $result['description']; ?></td>
 							<td nowrap><?php echo $result['grade']; ?></td>
+							<td nowrap><?php echo $result['status']; ?></td>
 						</tr>
+						<?php } ?>
 					<?php } ?>
 				<?php } ?>
 			<?php } ?>

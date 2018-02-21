@@ -2,12 +2,19 @@
 session_start();
 require_once('model/database.php');
 require_once('model/question_db.php');
+require_once('model/result_db.php');
+
+//print_r($_SESSION);
 
 $subjectId = filter_input(INPUT_POST, "subjectId");
 
 $_SESSION['subjectId'] = $subjectId;
+$userId = $_SESSION['userId'];
 
 if (!isset($subjectId)) { $subjectId = "1"; }
+
+$lastInsertedId = add_result($userId, $subjectId, 0, 'DOING');
+$_SESSION['resultId'] = $lastInsertedId;
 
 $questions = get_questions_by_subject($subjectId);
 
@@ -18,7 +25,7 @@ do {
     if (!in_array($questions[$i], $selectedQuestions)) {
         $selectedQuestions[] = $questions[$i];
     }
-} while (count($selectedQuestions) < 10);
+} while (count($selectedQuestions) < 3);
 
 //echo "<pre>";
 // print_r($selectedQuestions);

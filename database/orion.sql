@@ -38,16 +38,8 @@ CREATE TABLE `result` (
   `subject_id` int(11) NOT NULL,
   `grade` int(2) NOT NULL,
   `testDate` date NOT NULL,
+  `status` enum('DOING','ABORTED','DONE') DEFAULT NULL,
   PRIMARY KEY (`result_id`),
   FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
   FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-INSERT INTO user (flag_admin, username, password, first_name, last_name, email, phone)
-VALUES (1,"amanda","brazil","Amanda","Rosa","amanda@lambton.com","6475555555");
-INSERT INTO user (flag_admin, username, password, first_name, last_name,  email, phone)
-VALUES (1,"denis","brazil","Denis","Gois","denis@lambton.com","6475555555");
-INSERT INTO user (flag_admin, username, password, first_name, last_name,  email, phone)
-VALUES (1,"araceli","brazil","Araceli","Teixeira","araceli@lambton.com","6475555555");
-INSERT INTO user (flag_admin, username, password, first_name, last_name,  email, phone)
-VALUES (0,"user","user","Robert","Smith","user@lambton.com","6475555555");

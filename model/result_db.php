@@ -63,7 +63,7 @@ function get_results_for_report($subject_id, $testDate) {
         $where = "WHERE r.testDate = '".$testDate."'";
     }
 
-    $query = 'SELECT u.first_name, u.last_name, s.description, r.subject_id, r.grade, r.testDate
+    $query = 'SELECT u.first_name, u.last_name, s.description, r.subject_id, r.grade, r.testDate, r.status
                 FROM result r
                 INNER JOIN user u
                 ON r.user_id = u.user_id
@@ -102,17 +102,18 @@ function get_result($result_id) {
     }
 }
 
-function add_result($user_id, $subject_id, $grade) {
+function add_result($user_id, $subject_id, $grade, $status) {
     global $db;
     $query = 'INSERT INTO result
-                 (user_id, subject_id, grade, testDate)
+                 (user_id, subject_id, grade, testDate, status)
               VALUES
-                 (:user_id, :subject_id, :grade, NOW())';
+                 (:user_id, :subject_id, :grade, NOW(), :status)';
     try {
         $statement = $db->prepare($query);
         $statement->bindValue(':user_id', $user_id);
         $statement->bindValue(':subject_id', $subject_id);
         $statement->bindValue(':grade', $grade);
+        $statement->bindValue(':status', $status);
         $statement->execute();
         $statement->closeCursor();
 
@@ -125,20 +126,21 @@ function add_result($user_id, $subject_id, $grade) {
     }
 }
 
-function update_result($result_id, $user_id, $subject_id, $grade, $testDate) {
+function update_result($result_id, $user_id, $subject_id, $grade, $status) {
     global $db;
     $query = 'UPDATE result
               SET user_id = :user_id,
                   subject_id = :subject_id,
                   grade = :grade,
-                  testDate = NOW()
+                  testDate = NOW(),
+                  status = :status
               WHERE result_id = :result_id';
     try {
         $statement = $db->prepare($query);
 		$statement->bindValue(':user_id', $user_id);
         $statement->bindValue(':subject_id', $subject_id);
         $statement->bindValue(':grade', $grade);
-        $statement->bindValue(':testDate', $testDate);
+        $statement->bindValue(':status', $status);
         $statement->bindValue(':result_id', $result_id);
         $row_count = $statement->execute();
         $statement->closeCursor();

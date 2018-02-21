@@ -9,6 +9,8 @@ include 'view/header.php';
 
 $userId = $_SESSION['userId'];
 $subjectId = $_SESSION['subjectId'];
+$resultId = $_SESSION['resultId'];
+
 $subject = get_subject($subjectId);
 $questions = get_questions_by_subject($subjectId);
 
@@ -21,10 +23,9 @@ foreach ($questions as $question) {
             }
         }
     }
-
 }
 
-$lastInsertedId = add_result($userId, $subjectId, $count);
+$rowCountUpdate = update_result($resultId, $userId, $subjectId, $count, 'DONE');
 
 if ($count > 7 ) {
     $result = "Score " . $count . "/10. You have successfully passed the test. You are now certified in " . $subject['description'] . ".";

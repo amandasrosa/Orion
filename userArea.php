@@ -4,12 +4,20 @@ session_start();
 require_once('model/database.php');
 require_once('model/user_db.php');
 require_once('model/subject_db.php');
+require_once('model/result_db.php');
 
 if (isset($_POST['signIn'])) {
 	$username = $_POST['username'];
 	//$password = $_POST['password'];
 } else if (isset($_GET['username'])) {
     $username = $_GET['username'];
+}
+
+if (isset($_POST['abort'])) {
+	$resultId = $_SESSION['resultId'];
+	$userId = $_SESSION['userId'];
+	$subjectId = $_SESSION['subjectId'];
+	$rowCountUpdate = update_result($resultId, $userId, $subjectId, 0, 'ABORTED');
 }
 
 $getSubjects = get_subjects();
