@@ -72,9 +72,9 @@ include 'view/header.php'; ?>
 	<form class="form-questions center" action="report.php" method="post">
 		<label class="label-report">Test: </label>
         <select name="subject" class="input-form option-filter">
-        	<option value="<?php echo (isset($_POST['subject'])) ? $_POST['subject'] : "";?>"><?php echo (!empty($_POST['subject'])) ? $subject_desc['description'] : "";?></option>
+        	<option value=""></option>
         	<?php foreach($getSubjects as $subject) { ?>
-        		<option  value="<?php echo $subject['subject_id']; ?>"><?php echo $subject['description']; ?></option>
+        		<option  value="<?php echo $subject['subject_id'];?>" <?php echo (isset($subject_id) && $subject_id == $subject['subject_id']) ? 'selected' : ''; ?>><?php echo $subject['description']; ?></option>
         	<?php } ?>
         </select>
         <label class="label-report">Date: </label>
