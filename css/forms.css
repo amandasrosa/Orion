@@ -39,6 +39,11 @@
     -ms-transition: all 0.30s ease-in-out;
     -o-transition: all 0.30s ease-in-out;
     outline: none;
+    font-family: Verdana;
+}
+
+input[type=date] {
+    padding: 0.2em !important;
 }
 
 select {

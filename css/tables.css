@@ -38,7 +38,7 @@ table, td, th {
 }
 
 .table-report tr td {
-    padding-right: 2em;
+    padding: 0.3em 2em;
 }
 
 .table-report {
