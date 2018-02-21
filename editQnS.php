@@ -6,6 +6,15 @@ require_once('model/subject_db.php');
 
 include 'view/header.php';
 if (!isset($subjectId)) { $subjectId = "1"; }
+
+if (isset($_POST["SubjectInsert"])) {
+    add_subject("", $_POST["description"]);
+} else if (isset($_POST["SubjectUpdate"])) {
+    update_subject($_POST["id"], $_POST["description"], 1);
+} else if (isset($_POST["SubjectDelete"])) {
+    delete_subject($_POST["id"]);
+}
+
 ?>
 <script>
         function toggleOptions(element) {
@@ -60,10 +69,8 @@ if (!isset($subjectId)) { $subjectId = "1"; }
             
 			var idCell = row1.insertCell(0);
 			var subject = row1.insertCell(1);
-			var buttonCell1 = row1.insertCell(2);
-            var buttonCell2 = row1.insertCell(3);
-            buttonCell1.classList.add("table-edit-button-cell");
-            buttonCell2.classList.add("table-edit-button-cell");
+			var buttonCell = row1.insertCell(2);
+            buttonCell.classList.add("table-edit-button-cell");
             
             idCell.innerHTML = "new";
             
@@ -71,25 +78,17 @@ if (!isset($subjectId)) { $subjectId = "1"; }
             var textInput = document.createElement("INPUT");
 			textInput.setAttribute("type", "text");
 			textInput.name = id;
+            textInput.id = "new " + id;
             textInput.classList.add("input-form", "input-100");
-			textInput.required;
-            textInput.focus();
+			textInput.required = true;
+            textInput.autofocus = true;
 			subject.appendChild(textInput);
             
             var okButton = createButton("ok", id);
             okButton.addEventListener("click", function(ev) {
                 upsertSubject(ev, this);
 			});
-			buttonCell1.appendChild(okButton);
-            
-            var deleteButton = createButton("delete", id);
-            deleteButton.style.visibility = "hidden";
-            deleteButton.id = okButton.value;
-            deleteButton.addEventListener("click", function(ev) {
-				ev.preventDefault();
-                deleteSubject(this);
-			});
-			buttonCell2.appendChild(deleteButton);
+			buttonCell.appendChild(okButton);
         }
     
         function createButton(iconType, id) {
@@ -97,10 +96,10 @@ if (!isset($subjectId)) { $subjectId = "1"; }
             button.setAttribute("type", "image");
             button.src = "images/" + iconType + "-icon.png";
             button.alt = iconType + " button";
-            button.height = "40";
-            button.width = "40";
+            button.height = "30";
+            button.width = "30";
             button.classList.add("alignBottomImg", "cursor");
-            button.value = "new" + id;
+            button.value = "new " + id;
             return button;
         }
     
@@ -109,30 +108,69 @@ if (!isset($subjectId)) { $subjectId = "1"; }
             
             if (button.alt == "ok button") {
                 var success = true;
+                var params = [];
                 
-                if (success) {
-                    button.src = "images/edit-icon.png";
-                    button.alt = "edit button";
-                    
-                    var deleteButton = document.getElementById(button.value);
-                    if (deleteButton.style.visibility == "hidden") {
-                        deleteButton.style.visibility = "visible";
-                    }
+                if (button.value.split(" ")[0] == "new") { //insert subject
+                    var textInput = document.getElementById(button.value);
+                    var description = textInput.value;
+                    var param1 = createInputParameter("SubjectInsert", "1");
+                    var param2 = createInputParameter("description", description);
+                    params = [param1, param2];
+                } else { // update subject
+                    var id = button.value;
+                    var textInput = document.getElementById(id);
+                    var description = textInput.value;
+                    var param1 = createInputParameter("SubjectUpdate", "1");
+                    var param2 = createInputParameter("id", id);
+                    var param3 = createInputParameter("description", description);
+                    params = [param1, param2, param3];
                 }
-            } else if (button.alt == "edit button") {
+                
+                createFormAndSubmit("editQnS.php", "post", params);
+            } else if (button.alt == "edit button") { //enable edit mode
                 button.src = "images/ok-icon.png";
                 button.alt = "ok button";
+                var id = button.value;
+                var textInput = document.getElementById(id);
+                textInput.readOnly = false;
             }
         }
     
-        function deleteSubject(event, subjectId){
+        function deleteSubject(event, button){
             event.preventDefault();
+            
+            var param1 = createInputParameter("SubjectDelete", "1");
+            var param2 = createInputParameter("id", button.value);
+            var params = [param1, param2];
+            createFormAndSubmit("editQnS.php", "post", params);
         };
+    
+        function createInputParameter(name, value) {
+            var inputParameter = document.createElement('input');
+            inputParameter.setAttribute('type', 'text');
+            inputParameter.setAttribute('name', name);
+            inputParameter.setAttribute('value', value);
+            return inputParameter;
+        }
+    
+        function createFormAndSubmit(url, method, parameters) {
+            var form = document.createElement('form');
+            form.setAttribute('action', url);
+            form.setAttribute('method', method);
+            form.setAttribute('hidden', 'true');
+
+            for (i = 0; i < parameters.length; i++) {
+                form.appendChild(parameters[i]);
+            }
+            
+            document.body.appendChild(form);
+            form.submit();
+        }
     </script>
 <section>
 
 <form class="form-editQS" action="saveQnS.php" method="post">
-<?php if (isset($_GET['editSubjects'])) {
+<?php if (isset($_GET['editSubjects']) || isset($_POST["SubjectInsert"]) || isset($_POST["SubjectUpdate"]) || isset($_POST["SubjectDelete"])) {
 
 	$subjects = get_subjects();
 ?>
@@ -150,9 +188,9 @@ if (!isset($subjectId)) { $subjectId = "1"; }
         <?php foreach ($subjects as $subject) { ?>
             <tr>
                 <td><?php echo $subject['subject_id'];?></td>
-                <td class="table-cell-question"><input class="input-form input-100" type="text" name="<?php echo $subject['subject_id'];?>" value="<?php echo htmlspecialchars($subject['description']);?>"/></td>
-                <td class="table-edit-button-cell"><input type="image" src="images/edit-icon.png" alt="edit button" height="40" width="40" class="alignBottomImg cursor" onclick="upsertSubject(event, this)" value="<?php echo $subject['subject_id'];?>"/></td>
-                <td class="table-edit-button-cell"><input type="image" src="images/delete-icon.png" alt="Delete" height="40" width="40" class="alignBottomImg cursor" onclick="deleteSubject(event, this)" value="<?php echo $subject['subject_id'];?>"/></td>
+                <td class="table-cell-question"><input class="input-form input-100" type="text" name="<?php echo $subject['subject_id'];?>" value="<?php echo htmlspecialchars($subject['description']);?>" id="<?php echo $subject['subject_id'];?>" readonly required/></td>
+                <td class="table-edit-button-cell"><input type="image" src="images/edit-icon.png" alt="edit button" height="30" width="30" class="alignBottomImg cursor" onclick="upsertSubject(event, this)" value="<?php echo $subject['subject_id'];?>"/></td>
+                <td class="table-edit-button-cell"><input type="image" src="images/delete-icon.png" alt="Delete" height="30" width="30" class="alignBottomImg cursor" onclick="deleteSubject(event, this)" value="<?php echo $subject['subject_id'];?>"/></td>
             </tr>
         <?php } ?>
         </tbody>
@@ -187,7 +225,7 @@ if (!isset($subjectId)) { $subjectId = "1"; }
                 <td class="table-cell-question"><button class="collapsible" onclick="toggleOptions(this);return false;" value="<?php echo $question['question_id'];?>"><?php echo htmlspecialchars($question['description']);?></button></td>
                 <td><input type="image" src="images/arrow-down-icon.png" alt="Collapse" height="45" width="45" class="alignBottomImg cursor" value="<?php echo $question['question_id'];?>" onclick="toggleOptions(this);return false;" id="<?php echo $question['question_id'];?>"/></td>
                 <td><input type="image" src="images/edit-icon.png" alt="Edit" height="30" width="30" class="alignBottomImg cursor" onclick="editQuestion(event, <?php echo $question['question_id'];?>)"/></td>
-                <td><input type="image" src="images/delete-icon.png" alt="Delete" height="40" width="40" class="alignBottomImg cursor" id="deleteButton" onclick="createModal(event, <?php echo $question['question_id'];?>, '<?php echo $question['description'];?>')"/></td>
+                <td><input type="image" src="images/delete-icon.png" alt="Delete" height="30" width="30" class="alignBottomImg cursor" id="deleteButton" onclick="createModal(event, <?php echo $question['question_id'];?>, '<?php echo $question['description'];?>')"/></td>
             </tr>
             <tr >
                 <td></td>

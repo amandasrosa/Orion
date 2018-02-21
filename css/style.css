@@ -119,6 +119,7 @@ footer {
 }
 
 .alignBottomImg {
+  padding: 0 0.2em;
   vertical-align: bottom;
 }
 
