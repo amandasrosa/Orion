@@ -82,21 +82,22 @@ if (isset($_POST["SubjectInsert"])) {
 			textInput.required = true;
             textInput.autofocus = true;
 			subject.appendChild(textInput);
-
-			var errorMessage = document.createElement("div");
-			errorMessage.classList.add("error-message");
-            errorMessage.classList.add("hidden");
-            errorMessage.id = "error-for-" + textInput.name;
-            errorMessage.textContent = "Please inform a valid subject.";
-            subject.appendChild(errorMessage);
-            idCell.classList.add("table-vert-top");
-            buttonCell.classList.add("table-vert-top");
             
             var okButton = createButton("ok", id);
             okButton.addEventListener("click", function(ev) {
                 upsertSubject(ev, this);
 			});
 			buttonCell.appendChild(okButton);
+            
+            var row2 = table.insertRow(id+1);
+			row2.insertCell(0);
+			var errorCell = row2.insertCell(1);
+			var errorMessage = document.createElement("div");
+			errorMessage.classList.add("error-message");
+            errorMessage.classList.add("hidden");
+            errorMessage.id = "error-for-" + textInput.name;
+            errorMessage.textContent = "Please inform a valid subject.";
+			errorCell.appendChild(errorMessage);
         }
     
         function createButton(iconType, id) {
