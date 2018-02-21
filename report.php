@@ -116,7 +116,7 @@ include 'view/header.php'; ?>
 
 	</form>
 	<form class="form-signin center" action="userArea.php" method="post">
-		<button type="submit" class="btn-basic" name="back">Back to Menu</button>
+		<button type="submit" class="btn-basic input-80" name="back">Back to Menu</button>
 	</form>
 </section>
 
