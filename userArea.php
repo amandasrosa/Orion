@@ -57,7 +57,7 @@ include 'view/header.php'; ?>
         <input type="hidden" name="username" value="<?php echo $username?>">
 	</form>
     <form class="form-signin" action="userAttempts.php" method="get">
-        <button type="submit" class="btn-basic" name="lastestResults" >Lastest Results</button>
+        <button type="submit" class="btn-basic" name="lastestResults" >Attempts</button>
     </form>
 	<form class="form-signin" action="index.php" method="post">
 		<button type="submit" class="btn-basic" name="signOut" >Sign out</button>
