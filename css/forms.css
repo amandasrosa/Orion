@@ -39,6 +39,7 @@
 }
 
 select {
+    padding: 0 0.5em !important;
     height: 2em;
     overflow: hidden;
 }

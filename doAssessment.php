@@ -25,7 +25,7 @@ do {
     if (!in_array($questions[$i], $selectedQuestions)) {
         $selectedQuestions[] = $questions[$i];
     }
-} while (count($selectedQuestions) < 3);
+} while (count($selectedQuestions) < 10);
 
 //echo "<pre>";
 // print_r($selectedQuestions);
