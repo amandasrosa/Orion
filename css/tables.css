@@ -91,7 +91,7 @@ table, td, th {
 }
 
 .table-attempts td, .table-attempts th {
-    padding: .5em 2em .5em .5em;
+    padding: .6em;
     text-align: center;
     border: 1px solid #ddd;
 }
@@ -102,7 +102,7 @@ table, td, th {
 
 .table-attempts td:nth-child(1),
 .table-attempts th:nth-child(1) {
-    text-align: left;
+    
 }
 
 .table-attempts tr:hover {background-color: #ddd;}

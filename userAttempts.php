@@ -22,7 +22,7 @@ include 'view/header.php'; ?>
         <thead>
             <tr>
                 <th>Subject</th>
-                <th>Score</th>
+                <th>Grade</th>
                 <th>Date</th>
                 <th>Status</th>
             </tr>
@@ -32,7 +32,7 @@ include 'view/header.php'; ?>
                 <tr>
                     <td><?php echo $result['description'] ?></td>
                     <td><?php echo sprintf('%02d', $result['grade']);?></td>
-                    <td><?php echo $result['status'] == 'DONE' ? DateTime::createFromFormat('Y-m-d', $result['testDate']) -> format('d/m/Y'): ' - '; ?></td>
+                    <td><?php echo DateTime::createFromFormat('Y-m-d', $result['testDate']) -> format('d/m/Y'); ?></td>
                     <td><?php echo $result['status'] == 'DONE' ? 'Completed' : 'Aborted' ?></td>
                 </tr>
             <?php } ?>
