@@ -184,8 +184,6 @@ if (isset($_POST["SubjectInsert"])) {
 <?php if (isset($_GET['editSubjects']) || isset($_POST["SubjectInsert"]) || isset($_POST["SubjectUpdate"]) || isset($_POST["SubjectDelete"])) {
 
 	$subjects = get_subjects();
-    
-    if (count($subjects) > 0) {
 ?>
     
     <table class="table-edit" id="tableSubjects">
@@ -217,9 +215,6 @@ if (isset($_POST["SubjectInsert"])) {
         <?php } ?>
         </tbody>
     </table>
-    <?php } else { ?>
-    <p class="center">There is no subjects.</p>
-    <?php } ?>
 	<div class="center">
         <button type="submit" class="btn-basic center" name="add" onclick="addSubject(event);">Add Subject</button>
     </div>
@@ -231,8 +226,6 @@ if (isset($_POST["SubjectInsert"])) {
 <?php if (isset($_GET['questSubjectId'])) {
 	$subjectId = $_GET['questSubjectId'];
 	$questions = get_questions_by_subject($subjectId);
-    
-    if (count($questions) > 0) {
 ?> 
 
 	<table class="table-edit" id="tableQuestions">
@@ -274,9 +267,6 @@ if (isset($_POST["SubjectInsert"])) {
         <?php } ?>
         </tbody>
     </table>
-    <?php } else { ?>
-    <p class="center">There is no questions for this subject.</p>
-    <?php } ?>
     <div class="center">
         <button type="submit" class="btn-basic center" name="add" onclick="newQuestion(event, <?php echo $subjectId ?>)">Add Question</button>
     </div>
