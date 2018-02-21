@@ -1,11 +1,11 @@
-INSERT INTO user (flag_admin, username, password, first_name, last_name, email, phone)
-VALUES (1,"amanda","brazil","Amanda","Rosa","amanda@lambton.com","6475555555");
-INSERT INTO user (flag_admin, username, password, first_name, last_name,  email, phone)
-VALUES (1,"denis","brazil","Denis","Gois","denis@lambton.com","6475555555");
-INSERT INTO user (flag_admin, username, password, first_name, last_name,  email, phone)
-VALUES (1,"araceli","brazil","Araceli","Teixeira","araceli@lambton.com","6475555555");
-INSERT INTO user (flag_admin, username, password, first_name, last_name,  email, phone)
-VALUES (0,"user","user","Robert","Smith","user@lambton.com","6475555555");
+INSERT INTO user (flag_admin, username, password, first_name, last_name, email, phone, address)
+VALUES (1,"amanda","brazil","Amanda","Rosa","amanda@lambton.com","(647)555-5555", "15 Sheppard Av");
+INSERT INTO user (flag_admin, username, password, first_name, last_name,  email, phone, address)
+VALUES (1,"denis","brazil","Denis","Gois","denis@lambton.com","(647)555-5555", "15 Sheppard Av");
+INSERT INTO user (flag_admin, username, password, first_name, last_name,  email, phone, address)
+VALUES (1,"araceli","brazil","Araceli","Teixeira","araceli@lambton.com","(647)555-5555", "15 Sheppard Av");
+INSERT INTO user (flag_admin, username, password, first_name, last_name,  email, phone, address)
+VALUES (0,"user","user","Robert","Smith","user@lambton.com","(647)555-5555", "15 Sheppard Av");
 
 INSERT INTO `result`(`user_id`, `subject_id`, `grade`, `testDate`, `status`) VALUES (1,1,8,NOW(),'DONE');
 INSERT INTO `result`(`user_id`, `subject_id`, `grade`, `testDate`, `status`) VALUES (2,1,0,NOW(),'ABORTED');
