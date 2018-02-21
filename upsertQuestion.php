@@ -70,27 +70,27 @@ include 'view/header.php'; ?>
             <label for="inputDescription" class="label-user-resgistration-left"><?php echo $subject['description']; ?></label>
 
             <label for="inputDescription" class="label-user-resgistration label-right">Description:</label>
-            <textarea rows="8" name="inputDescription" class="input-form input-60" placeholder="Question Description" required><?php echo $question['description']; ?></textarea>
+            <textarea rows="8" name="inputDescription" class="input-form input-60" placeholder="Question Description" maxlength="500" required><?php echo $question['description']; ?></textarea>
             <div class="error-message hidden" id="error-for-inputDescription">Please inform a valid question description.</div>
 
             <label for="inputOptionA" class="label-user-resgistration label-right">Option A:</label>
             <input type="text" name="inputOptionA" class="input-form input-60" placeholder="Option A"
-                   required value="<?php echo $question['optionA'] ?>">
+                   required value="<?php echo $question['optionA'] ?>" maxlength="200">
             <div class="error-message hidden" id="error-for-inputOptionA">Please inform a valid option.</div>
 
             <label for="inputOptionB" class="label-user-resgistration label-right">Option C:</label>
             <input type="text" name="inputOptionB" class="input-form input-60" placeholder="Option B"
-                   required value="<?php echo $question['optionB'] ?>">
+                   required value="<?php echo $question['optionB'] ?>" maxlength="200">
             <div class="error-message hidden" id="error-for-inputOptionB">Please inform a valid option.</div>
 
             <label for="inputOptionC" class="label-user-resgistration label-right">Option C:</label>
             <input type="text" name="inputOptionC" class="input-form input-60" placeholder="Option C"
-                   required value="<?php echo $question['optionC'] ?>">
+                   required value="<?php echo $question['optionC'] ?>" maxlength="200">
             <div class="error-message hidden" id="error-for-inputOptionC">Please inform a valid option.</div>
 
             <label for="inputOptionD" class="label-user-resgistration label-right">Option D:</label>
             <input type="text" name="inputOptionD" class="input-form input-60" placeholder="Option D"
-                   required value="<?php echo $question['optionD'] ?>">
+                   required value="<?php echo $question['optionD'] ?>" maxlength="200">
             <div class="error-message hidden" id="error-for-inputOptionD">Please inform a valid option.</div>
 
             <label for="selectAnswer" class="label-user-resgistration label-right">Correct Answer:</label>
