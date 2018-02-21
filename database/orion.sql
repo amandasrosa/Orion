@@ -1,3 +1,5 @@
+CREATE DATABASE IF NOT EXISTS orion;
+
 CREATE TABLE `user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `flag_admin` boolean NOT NULL DEFAULT 0,
