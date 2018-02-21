@@ -15,7 +15,7 @@ var hasError = function (field) {
 var showError = function(field) {
     field.classList.add('error');
 
-    var id = field.id || field.name;
+    var id = field.name;
     if (!id) return;
 
     var message = field.form.querySelector('.error-message#error-for-'+id);

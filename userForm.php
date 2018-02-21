@@ -167,7 +167,7 @@ include 'view/header.php'; ?>
             <div class="error-message hidden" id="error-for-inputPhone">Please inform a valid phone number.</div>
 
             <label for="inputAddress" class="label-user-resgistration label-right">Address</label>
-            <input type="text" name="inputAddress" class="input-form input-60"ds placeholder="Ex: 999 Sheppard Av"
+            <input type="text" name="inputAddress" class="input-form input-60" placeholder="Ex: 999 Sheppard Av"
                    required value="<?php echo $user['address'] ?>" pattern="\w+(\s\w+){2,}">
             <div class="error-message hidden" id="error-for-inputAddress">Please inform your address.</div>
 

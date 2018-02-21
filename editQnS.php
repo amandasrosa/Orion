@@ -76,12 +76,19 @@ if (isset($_POST["SubjectInsert"])) {
 			subject.classList.add("table-cell-question");
             var textInput = document.createElement("INPUT");
 			textInput.setAttribute("type", "text");
-			textInput.name = id;
+			textInput.name = 'sub'+id;
             textInput.id = "new " + id;
             textInput.classList.add("input-form", "input-100");
 			textInput.required = true;
             textInput.autofocus = true;
 			subject.appendChild(textInput);
+
+			var errorMessage = document.createElement("div");
+			errorMessage.classList.add("error-message");
+            errorMessage.classList.add("hidden");
+            errorMessage.id = "error-for-" + textInput.name;
+            errorMessage.textContent = "Please inform a valid subject.";
+            subject.appendChild(errorMessage);
             
             var okButton = createButton("ok", id);
             okButton.addEventListener("click", function(ev) {
@@ -102,9 +109,13 @@ if (isset($_POST["SubjectInsert"])) {
             return button;
         }
     
-        function upsertSubject(event, button) {
+        function upsertSubject(event, button, input) {
             event.preventDefault();
-            
+            var field = document.getElementById(button.value);
+            if (hasError(field)) {
+                showError(field);
+                return;
+            }
             if (button.alt == "ok button") {
                 var success = true;
                 var params = [];
@@ -167,7 +178,7 @@ if (isset($_POST["SubjectInsert"])) {
     </script>
 <section>
 
-<form class="form-editQS" action="saveQnS.php" method="post">
+<form class="form-editQS validate" action="saveQnS.php" method="post">
 <?php if (isset($_GET['editSubjects']) || isset($_POST["SubjectInsert"]) || isset($_POST["SubjectUpdate"]) || isset($_POST["SubjectDelete"])) {
 
 	$subjects = get_subjects();
@@ -187,10 +198,19 @@ if (isset($_POST["SubjectInsert"])) {
         <tbody>
         <?php foreach ($subjects as $subject) { ?>
             <tr>
-                <td><?php echo $subject['subject_id'];?></td>
-                <td class="table-cell-question"><input class="input-form input-100" type="text" name="<?php echo $subject['subject_id'];?>" value="<?php echo htmlspecialchars($subject['description']);?>" id="<?php echo $subject['subject_id'];?>" disabled required/></td>
-                <td class="table-edit-button-cell"><input type="image" src="images/edit-icon.png" alt="edit button" height="30" width="30" class="alignBottomImg cursor" onclick="upsertSubject(event, this)" value="<?php echo $subject['subject_id'];?>"/></td>
-                <td class="table-edit-button-cell"><input type="image" src="images/delete-icon.png" alt="Delete" height="30" width="30" class="alignBottomImg cursor" onclick="createModal(event, 'Are you sure you want to delete the subject?', '<?php echo $subject['subject_id'] . ' - ' . $subject['description'];?>', this, deleteSubject)" value="<?php echo $subject['subject_id'];?>"/></td>
+                <td>
+                    <?php echo $subject['subject_id'];?>
+                </td>
+                <td class="table-cell-question">
+                    <input class="input-form input-100" type="text" name="<?php echo 'sub'.$subject['subject_id'];?>" value="<?php echo htmlspecialchars($subject['description']);?>" id="<?php echo $subject['subject_id'];?>" disabled required/>
+                    <div class="error-message hidden" id="error-for-sub<?php echo $subject['subject_id'];?>">Please inform a valid subject.</div>
+                </td>
+                <td class="table-edit-button-cell">
+                    <input type="image" src="images/edit-icon.png" alt="edit button" height="30" width="30" class="alignBottomImg cursor" onclick="upsertSubject(event, this)" value="<?php echo $subject['subject_id'];?>"/>
+                </td>
+                <td class="table-edit-button-cell">
+                    <input type="image" src="images/delete-icon.png" alt="Delete" height="30" width="30" class="alignBottomImg cursor" onclick="createModal(event, 'Are you sure you want to delete the subject?', '<?php echo $subject['subject_id'] . ' - ' . $subject['description'];?>', this, deleteSubject)" value="<?php echo $subject['subject_id'];?>"/>
+                </td>
             </tr>
         <?php } ?>
         </tbody>
@@ -266,4 +286,5 @@ if (isset($_POST["SubjectInsert"])) {
 	</form>
 </section>
 <script src="js/modal.js"></script>
+<script src="js/formValidation.js"></script>
 <?php include 'view/footer.php'; ?>
