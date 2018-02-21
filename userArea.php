@@ -56,10 +56,12 @@ include 'view/header.php'; ?>
 		<button type="submit" class="btn-basic" name="editProfile" >Edit Profile</button>
         <input type="hidden" name="username" value="<?php echo $username?>">
 	</form>
+    <form class="form-signin" action="userAttempts.php" method="get">
+        <button type="submit" class="btn-basic" name="lastestResults" >Lastest Results</button>
+    </form>
 	<form class="form-signin" action="index.php" method="post">
 		<button type="submit" class="btn-basic" name="signOut" >Sign out</button>
 	</form>
-
 	<?php } else {?>
 
 		<p>Welcome to Administration Area, <?php echo $_SESSION['name']."!"; ?></p>

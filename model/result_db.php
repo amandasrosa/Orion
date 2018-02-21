@@ -2,8 +2,12 @@
 
 function get_results_by_user($user_id) {
     global $db;
-    $query = 'SELECT * FROM result
-              WHERE user_id = :user_id
+    $query = 'SELECT u.username, s.description, r.grade, r.testDate, r.status FROM result r
+                INNER JOIN user u
+                ON r.user_id = u.user_id
+                INNER JOIN subject s
+                ON r.subject_id = s.subject_id
+              WHERE r.user_id = :user_id
               ORDER BY result_id';
     try {
         $statement = $db->prepare($query);

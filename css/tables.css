@@ -63,3 +63,51 @@ table, td, th {
     background-color: #20B2AA;
     color: white;
 }
+
+.section-attempts {
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form-attempts {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.table-attempts {
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    margin-bottom: 6em;
+}
+
+.table-attempts th {
+    background-color: #20B2AA;
+    color: #f2f2f2;
+}
+
+.table-attempts td, .table-attempts th {
+    padding: .5em 2em .5em .5em;
+    text-align: center;
+}
+
+.table-attempts tr:nth-child(odd) {
+    background-color:#f2f2f2;
+}
+
+.table-attempts td:nth-child(1),
+.table-attempts th:nth-child(1) {
+    text-align: left;
+}
+
+.table-attempts tr:hover {background-color: #ddd;}
+
+.center-children {
+    display: flex;
+    justify-content: center;
+}
