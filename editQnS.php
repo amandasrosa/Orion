@@ -8,7 +8,7 @@ include 'view/header.php';
 if (!isset($subjectId)) { $subjectId = "1"; }
 
 if (isset($_POST["SubjectInsert"])) {
-    add_subject("", $_POST["description"]);
+    add_subject($_POST["description"]);
 } else if (isset($_POST["SubjectUpdate"])) {
     update_subject($_POST["id"], $_POST["description"], 1);
 } else if (isset($_POST["SubjectDelete"])) {
