@@ -5,7 +5,7 @@ CREATE TABLE `user` (
   `flag_admin` boolean NOT NULL DEFAULT 0,
   `username` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `first_name` varchar(10) DEFAULT NULL,
+  `first_name` varchar(20) DEFAULT NULL,
   `last_name` varchar(40) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `phone` varchar(15) DEFAULT NULL,
