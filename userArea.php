@@ -30,6 +30,7 @@ if (isset($_POST['abort'])) {
 }
 
 $getSubjects = get_subjects_q();
+$getSubjectsAdmin = get_subjects();
 $getTypeUser = "";
 $getUser = get_user($username);
 $getTypeUser = $getUser['flag_admin'];
@@ -84,7 +85,7 @@ include 'view/header.php'; ?>
 		<div class="drop">
 		<button type="button" class="btn-basic dropBtn input-80" name="" >Edit Questions</button>
 			<div class="dropDownGroup">
-			<?php foreach($getSubjects as $subject) { ?>
+			<?php foreach($getSubjectsAdmin as $subject) { ?>
 				<button type="submit" class="btn-basic input-80" name="questSubjectId" value="<?php echo $subject['subject_id']; ?>" ><?php echo $subject['description']; ?></button>
 			<?php } ?>
 			</div>
