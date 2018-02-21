@@ -5,11 +5,15 @@ table, td, th {
 .table-edit {
     border-collapse: collapse;
     width: 80%;
-    margin: 0 auto !important;
+    margin: 1em auto !important;
 }
 
 .table-edit th {
     padding: 1em;
+}
+
+.table-vert-top {
+    vertical-align: text-top;  
 }
 
 .table-edit tr td:first-child, .table-edit th td:first-child {

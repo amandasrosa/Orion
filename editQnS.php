@@ -89,6 +89,8 @@ if (isset($_POST["SubjectInsert"])) {
             errorMessage.id = "error-for-" + textInput.name;
             errorMessage.textContent = "Please inform a valid subject.";
             subject.appendChild(errorMessage);
+            idCell.classList.add("table-vert-top");
+            buttonCell.classList.add("table-vert-top");
             
             var okButton = createButton("ok", id);
             okButton.addEventListener("click", function(ev) {
