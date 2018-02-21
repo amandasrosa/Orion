@@ -145,19 +145,39 @@ footer {
   -webkit-transform: rotate(45deg);
 }
 
+.drop {
+   overflow: hidden;
+}
+
+
+.dropBtn {
+  float: left;
+}
+
 .dropDownGroup {
     display: none;
     position: absolute;
-    min-width: 160px;
+    min-width: 210px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+    margin-left: 22%;
+}
+
+@media (max-width:1200px) {
+  .dropBtn {
+    float: none;
+  }
+
+  .dropDownGroup {
+      margin-left: 0;
+  }
 }
 
 .dropDownGroup button {
     float: none;
     text-decoration: none;
     display: block;
-    width: 80%;
+    width: 90%;
     font-size: 0.9em;
     background-color: #3030cd;
 }
