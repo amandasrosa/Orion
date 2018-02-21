@@ -131,7 +131,8 @@ if (isset($_POST["SubjectInsert"])) {
                 button.alt = "ok button";
                 var id = button.value;
                 var textInput = document.getElementById(id);
-                textInput.readOnly = false;
+                textInput.disabled = false;
+                textInput.focus();
             }
         }
 
@@ -187,7 +188,7 @@ if (isset($_POST["SubjectInsert"])) {
         <?php foreach ($subjects as $subject) { ?>
             <tr>
                 <td><?php echo $subject['subject_id'];?></td>
-                <td class="table-cell-question"><input class="input-form input-100" type="text" name="<?php echo $subject['subject_id'];?>" value="<?php echo htmlspecialchars($subject['description']);?>" id="<?php echo $subject['subject_id'];?>" readonly required/></td>
+                <td class="table-cell-question"><input class="input-form input-100" type="text" name="<?php echo $subject['subject_id'];?>" value="<?php echo htmlspecialchars($subject['description']);?>" id="<?php echo $subject['subject_id'];?>" disabled required/></td>
                 <td class="table-edit-button-cell"><input type="image" src="images/edit-icon.png" alt="edit button" height="30" width="30" class="alignBottomImg cursor" onclick="upsertSubject(event, this)" value="<?php echo $subject['subject_id'];?>"/></td>
                 <td class="table-edit-button-cell"><input type="image" src="images/delete-icon.png" alt="Delete" height="30" width="30" class="alignBottomImg cursor" onclick="createModal(event, 'Are you sure you want to delete the subject?', '<?php echo $subject['subject_id'] . ' - ' . $subject['description'];?>', this, deleteSubject)" value="<?php echo $subject['subject_id'];?>"/></td>
             </tr>
