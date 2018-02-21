@@ -35,7 +35,7 @@ function get_subject($subject_id) {
     }
 }
 
-function add_subject($subject_id, $description) {
+function add_subject($description) {
     global $db;
     $query = 'INSERT INTO subject
                  (description)

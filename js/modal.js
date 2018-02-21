@@ -20,7 +20,7 @@ function createModal(event, confirmation, message, okFunctionParam, okFunction) 
     modalHeader.classList.add("modal-header");
 
     var title = document.createElement("p");
-    title.textContent = "Delete Question";
+    title.textContent = "Delete";
     modalHeader.appendChild(title);
 
     modalContent.appendChild(modalHeader);
